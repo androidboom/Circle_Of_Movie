@@ -2,64 +2,29 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
-    //use legacy for android 6.0
-    useLibrary 'org.apache.http.legacy'
+    buildToolsVersion "26.0.3"
     defaultConfig {
-        applicationId "com.example.liubo.world_of_movie"
+        applicationId "com.example.liubo.test"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-
-    signingConfigs {
-        debug {
-            storeFile file('E:\\刘博的文件\\World_Of_Movie\\worldofmovie.jks')//签名文件路径
-            storePassword "123456"
-            keyAlias "worldofmovie"
-            keyPassword "123456"  //签名密码
-        }
-        release {
-            storeFile file('E:\\刘博的文件\\World_Of_Movie\\worldofmovie.jks')//签名文件路径
-            storePassword "123456"
-            keyAlias "worldofmovie"
-            keyPassword "123456"  //签名密码
-        }
-    }
     buildTypes {
-        debug {
-            signingConfig signingConfigs.debug
-        }
         release {
-            //是否混淆
             minifyEnabled false
-            //是否移除无用资源
-            zipAlignEnabled true
-            signingConfig signingConfigs.release
-            //混淆的配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
         }
     }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.google.android.gms:play-services-gcm:9.4.0'
-    compile 'com.hyphenate:hyphenate-sdk:3.3.0'
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile files('libs/hyphenatechat_3.3.7.jar')
 }
