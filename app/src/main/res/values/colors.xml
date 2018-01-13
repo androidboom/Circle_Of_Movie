@@ -10,7 +10,11 @@
     <color name="fragment_text">#bebbb4</color>
     <!-- 主页面分隔线颜色 -->
     <color name="gray_light">#eaeaea</color>
+
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="loginout">#FF0000</color>
+    <color name="white">#FFFFFF</color>
 </resources>
