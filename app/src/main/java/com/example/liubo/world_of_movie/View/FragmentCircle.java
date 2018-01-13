@@ -16,13 +16,11 @@ import org.w3c.dom.Text;
  */
 
 public class FragmentCircle extends Fragment {
-    private TextView circle_tv1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_circle,null);
 
-        circle_tv1 = (TextView)view.findViewById(R.id.circle_tv1);
         return view;
     }
 }
