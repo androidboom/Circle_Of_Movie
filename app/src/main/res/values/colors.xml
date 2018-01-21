@@ -17,4 +17,5 @@
 
     <color name="loginout">#FF0000</color>
     <color name="white">#FFFFFF</color>
+    <color name="sign_text">#6B8E23</color>
 </resources>

@@ -11,16 +11,14 @@ import android.widget.TextView;
 
 import com.example.liubo.world_of_movie.R;
 
-
 /**
- * Created by Liubo on 2017/12/31.
+ * Created by Liubo on 2018/1/21.
  */
 
-public class LoginActivity extends AppCompatActivity {
+public class Sign extends AppCompatActivity {
     private EditText signup_username;
     private EditText signup_pw;
-    private Button signup_btn;
-    private TextView signin_btn;
+    private Button signin_btn;
     private ImageView right_add;
     private ImageView left_back;
     private TextView title;
@@ -28,24 +26,24 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_layout);
+        setContentView(R.layout.sign_layout);
         init();
         setListener();
     }
 
     public void init(){
-        signup_btn = (Button) findViewById(R.id.signup_btn);
-        signin_btn = (TextView) findViewById(R.id.signin_btn);
+        signin_btn = (Button) findViewById(R.id.signin_btn);
         right_add = (ImageView)findViewById(R.id.right_add);
+        signup_username = (EditText)findViewById(R.id.signup_username);
+        signup_pw = (EditText)findViewById(R.id.signup_pw);
         right_add.setVisibility(View.GONE);
         left_back = (ImageView)findViewById(R.id.left_back);
         left_back.setVisibility(View.GONE);
         title = (TextView)findViewById(R.id.title);
-        title.setText("登录");
+        title.setText("注册");
     }
 
     public void setListener(){
-        signup_btn.setOnClickListener(MyListener);
         signin_btn.setOnClickListener(MyListener);
     }
 

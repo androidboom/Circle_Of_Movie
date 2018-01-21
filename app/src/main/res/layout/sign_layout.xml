@@ -24,17 +24,15 @@
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:text="用户名："
+            android:text="用户名:"
             android:textSize="15sp"/>
         <EditText
             android:id="@+id/signup_username"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"/>
@@ -47,56 +45,31 @@
         android:layout_marginRight="15dp"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:text="密码："
             android:textSize="15sp"/>
         <EditText
             android:id="@+id/signup_pw"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="还没注册？赶快"
-            android:textColor="@color/white"/>
-        <TextView
-            android:id="@+id/signin_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="注册"
-            android:textColor="@color/sign_text"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="吧"
-            android:textColor="@color/white"/>
-    </LinearLayout>
-
     <Button
-        android:id="@+id/signup_btn"
+        android:id="@+id/signin_btn"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/login"
+        android:background="@drawable/corners_bg_login"
         android:textColor="@color/white"
-        android:background="@drawable/corners_bg_login" />
+        android:text="@string/sign" />
+
 
 </LinearLayout>
