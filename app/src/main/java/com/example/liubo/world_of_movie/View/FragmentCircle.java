@@ -34,7 +34,7 @@ public class FragmentCircle extends Fragment {
     public void init(){
         lv = (ListView)view.findViewById(R.id.lv);
         CircleAdapter circleAdapter = new CircleAdapter(getActivity(),Data);
-        lv.setAdapter(circleAdapter);
+        //lv.setAdapter(circleAdapter);
     }
 
 }
