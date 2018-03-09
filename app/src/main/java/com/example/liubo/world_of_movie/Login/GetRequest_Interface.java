@@ -26,7 +26,11 @@ public interface GetRequest_Interface {
 
     @POST("signUser")
     @FormUrlEncoded
-    Call<String>getString(@Field("userid") String userid, @Field("password") String password,@Field("username") String username);
+    Call<String>getString(@Field("userid") String userid, @Field("password") String password,@Field("username") String username,@Field("psw_answer")String psw_answer);
+
+    @GET("signIMUser")
+    //@FormUrlEncoded
+    Call<String>getString(@Query("userid") String userid, @Query("IM_userid") String IM_userid,@Query("IM_userpw") String IM_userpw);
 
 //    @POST("alterPSW")
 //    @FormUrlEncoded

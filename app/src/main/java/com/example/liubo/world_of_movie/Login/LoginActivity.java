@@ -11,8 +11,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.liubo.world_of_movie.IM.IMTest;
+import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
 import com.example.liubo.world_of_movie.View.MainActivity;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private ImageView left_back;
     private TextView title;
     private TextView forget_pw;
+    private MyApplication app;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void init(){
+        app = (MyApplication) getApplication(); // 获得CustomApplication对象
         signup_btn = (Button) findViewById(R.id.signup_btn);
         signin_btn = (TextView) findViewById(R.id.signin_btn);
         signup_userid = (EditText) findViewById(R.id.signup_userid);
@@ -89,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // 创建Retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.31.215:8080/springmvc/") // 设置网络请求 Url
+                .baseUrl(app.getValue()) // 设置网络请求 Url
                 // 增加返回值为String的支持
                 .addConverterFactory(ScalarsConverterFactory.create())
                 // 增加返回值为Gson的支持
@@ -107,20 +113,42 @@ public class LoginActivity extends AppCompatActivity {
             // 请求成功时回调
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Log.v("login", "response.message() = " + response.message() + "\n" +
+                Log.v("login", "影视圈登陆成功" + "response.message() = " + response.message() + "\n" +
                         "response.body() = " + response.body());
-                Intent intent = new Intent();
-                intent.setClass(LoginActivity.this, MainActivity.class);
-                intent.putExtra("LOGIN",signup_userid.getText().toString());
-                startActivity(intent);
+                signup();
             }
 
             // 请求失败时回调
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Log.v("login", "onFailure = \n" + t.toString());
+                Log.v("login", "影视圈登陆失败" + "onFailure = \n" + t.toString());
             }
         });
+    }
+
+    public void signup(){
+        EMClient.getInstance().login(signup_userid.getText().toString().trim(),
+                signup_pw.getText().toString().trim(), new EMCallBack() {
+                    @Override
+                    public void onSuccess() {
+                        Intent intent = new Intent();
+                        intent.setClass(LoginActivity.this, MainActivity.class);
+                        intent.putExtra("LOGIN",signup_userid.getText().toString());
+                        startActivity(intent);
+                        finish();
+                        Log.e("login","IM登陆成功");
+                    }
+
+                    @Override
+                    public void onError(int i, String s) {
+                        Log.e("login","IM登录失败" + i + "," + s);
+                    }
+
+                    @Override
+                    public void onProgress(int i, String s) {
+
+                    }
+                });
     }
 
 }

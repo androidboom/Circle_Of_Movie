@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
 
 import retrofit2.Call;
@@ -33,6 +34,7 @@ public class ForgetPassword extends AppCompatActivity {
     private EditText alter_name;
     private EditText alter_userid;
     private EditText alter_pw;
+    private MyApplication app;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class ForgetPassword extends AppCompatActivity {
     }
 
     public void init(){
+        app = (MyApplication) getApplication(); // 获得CustomApplication对象
         alterpasswordbtn = (Button) findViewById(R.id.alterpasswordbtn);
         alter_userid = (EditText) findViewById(R.id.alter_userid);
         alter_pw = (EditText) findViewById(R.id.alter_pw);
@@ -74,7 +77,7 @@ public class ForgetPassword extends AppCompatActivity {
 
         // 创建Retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.31.215:8080/springmvc/") // 设置网络请求 Url
+                .baseUrl(app.getValue()) // 设置网络请求 Url
                 // 增加返回值为String的支持
                 .addConverterFactory(ScalarsConverterFactory.create())
                 // 增加返回值为Gson的支持
