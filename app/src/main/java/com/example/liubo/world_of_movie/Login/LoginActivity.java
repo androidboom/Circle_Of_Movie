@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.liubo.world_of_movie.Bean.LoginBean;
 import com.example.liubo.world_of_movie.IM.IMTest;
 import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
@@ -127,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void signup(){
-        EMClient.getInstance().login(signup_userid.getText().toString().trim(),
+        EMClient.getInstance().login("im" + signup_userid.getText().toString().trim(),
                 signup_pw.getText().toString().trim(), new EMCallBack() {
                     @Override
                     public void onSuccess() {

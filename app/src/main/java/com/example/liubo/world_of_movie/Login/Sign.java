@@ -12,6 +12,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.liubo.world_of_movie.Bean.SignIMUser;
+import com.example.liubo.world_of_movie.Bean.SignUser;
 import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
 import com.hyphenate.chat.EMClient;
@@ -38,7 +40,7 @@ public class Sign extends AppCompatActivity {
     private EditText signup_name;
     private EditText signup_idcard;
     private MyApplication app;
-    String IM_userid;
+    private String IM_userid;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,6 +109,7 @@ public class Sign extends AppCompatActivity {
                 Log.v("sign", "注册影视圈账户成功" + "response.message() = " + response.message() + "\n" +
                         "response.body() = " + response.body());
                 signin();
+
             }
 
             // 请求失败时回调
@@ -126,7 +129,6 @@ public class Sign extends AppCompatActivity {
                     EMClient.getInstance().createAccount(IM_userid.trim(),
                             signup_pw.getText().toString().trim());
                     Log.e("sign","IM注册成功");
-                    //EMClient.getInstance().logout(true);
                     requestIM();
                 } catch (HyphenateException e) {
                     e.printStackTrace();

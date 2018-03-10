@@ -1,5 +1,10 @@
 package com.example.liubo.world_of_movie.Login;
 
+import com.example.liubo.world_of_movie.Bean.AlterPSW;
+import com.example.liubo.world_of_movie.Bean.LoginBean;
+import com.example.liubo.world_of_movie.Bean.SignIMUser;
+import com.example.liubo.world_of_movie.Bean.SignUser;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -21,20 +26,16 @@ public interface GetRequest_Interface {
     @GET("login")
     Call<String> getString(@Query("userid") String userid, @Query("password") String password);
 
-//    @GET("signUser")
-//    Call<String> getString(@Query("userid") String userid, @Query("password") String password,@Query("username") String username);
-
     @POST("signUser")
     @FormUrlEncoded
-    Call<String>getString(@Field("userid") String userid, @Field("password") String password,@Field("username") String username,@Field("psw_answer")String psw_answer);
+    Call<String>getString(@Field("userid") String userid, @Field("password") String password, @Field("username") String username, @Field("psw_answer")String psw_answer);
 
     @GET("signIMUser")
-    //@FormUrlEncoded
-    Call<String>getString(@Query("userid") String userid, @Query("IM_userid") String IM_userid,@Query("IM_userpw") String IM_userpw);
+    Call<String>getString(@Query("userid") String userid, @Query("IM_userid") String IM_userid, @Query("IM_userpw") String IM_userpw);
 
-//    @POST("alterPSW")
-//    @FormUrlEncoded
-//    Call<String> getString(@Field("userid") String userid, @Field("password") String password,@Field("username") String username);
+    @POST("alterPSW")
+    @FormUrlEncoded
+    Call<String> get(@Field("userid") String userid, @Field("password") String password, @Field("username") String username);
 
 
 }

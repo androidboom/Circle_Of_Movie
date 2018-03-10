@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.liubo.world_of_movie.Bean.AlterPSW;
 import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
 
@@ -88,7 +89,7 @@ public class ForgetPassword extends AppCompatActivity {
         GetRequest_Interface request = retrofit.create(GetRequest_Interface.class);
 
         // 对发送请求进行封装
-        Call<String> call = request.getString(alter_userid.getText().toString(), alter_pw.getText().toString(),
+        Call<String> call = request.get(alter_userid.getText().toString(), alter_pw.getText().toString(),
                 alter_name.getText().toString());
 
         // 发送网络请求(异步)

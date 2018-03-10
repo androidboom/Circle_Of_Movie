@@ -1,12 +1,11 @@
 package com.example.liubo.world_of_movie.View;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
+
+import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,7 +13,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.liubo.world_of_movie.BaseView.MyAlarmView;
+
+import com.example.liubo.world_of_movie.IM.ChatActivity;
 import com.example.liubo.world_of_movie.R;
+import com.hyphenate.chat.EMConversation;
+import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.ui.EaseContactListFragment;
+import com.hyphenate.easeui.ui.EaseConversationListFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout main_circle;
     private RelativeLayout main_me;
     private LinearLayout mian_content_container;
-    private Fragment fragmentconcent;
+    private FragmentContent fragmentconcent;
     private FragmentSurround fragmentsurround;
     private FragmentMain fragmentmain;
     private FragmentCircle fragmentcircle;
@@ -47,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        fragmentManager = getFragmentManager();
-        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.mian_content_container,fragmentmain,"f3");
         main_icon_movie.setImageResource(R.drawable.tab_main_h2x);
         swvWave.start();
@@ -94,12 +100,19 @@ public class MainActivity extends AppCompatActivity {
         main_icon.setOnClickListener(MyListener);
         main_circle.setOnClickListener(MyListener);
         main_me.setOnClickListener(MyListener);
+        fragmentconcent.setConversationListItemClickListener(new EaseConversationListFragment.EaseConversationListItemClickListener() {
+
+            @Override
+            public void onListItemClicked(EMConversation conversation) {
+                startActivity(new Intent(MainActivity.this, ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, conversation.conversationId()));
+            }
+        });
     }
 
     View.OnClickListener MyListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             resetButton();
             switch (v.getId()){
                 case R.id.main_content:
