@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- title主色 -->
-    <color name="ssf_main_color">#005083</color>
+    <color name="ssf_main_color">#00ACFF</color>
     <!-- 副色调 -->
-    <color name="ssf_fu_color">#005083</color>
+    <color name="ssf_fu_color">#00ACEF</color>
     <!-- 通用背景页面 -->
     <color name="common_bg">#f3f5f9</color>
     <!-- 主页面FragmentTab文字颜色 -->
@@ -11,8 +11,8 @@
     <!-- 主页面分隔线颜色 -->
     <color name="gray_light">#eaeaea</color>
 
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#00ACFF</color>
+    <color name="colorPrimaryDark">#00ACEF</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="loginout">#FF0000</color>
