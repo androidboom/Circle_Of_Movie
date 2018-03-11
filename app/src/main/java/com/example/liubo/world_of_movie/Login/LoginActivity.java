@@ -116,7 +116,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.v("login", "影视圈登陆成功" + "response.message() = " + response.message() + "\n" +
                         "response.body() = " + response.body());
-                signup();
+                //signup();
+                Intent intent = new Intent();
+                intent.setClass(LoginActivity.this, MainActivity.class);
+                intent.putExtra("LOGIN",signup_userid.getText().toString());
+                startActivity(intent);
+                finish();
             }
 
             // 请求失败时回调

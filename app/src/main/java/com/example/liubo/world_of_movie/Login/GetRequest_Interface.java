@@ -37,5 +37,10 @@ public interface GetRequest_Interface {
     @FormUrlEncoded
     Call<String> get(@Field("userid") String userid, @Field("password") String password, @Field("username") String username);
 
+    @POST("updateInformation")
+    @FormUrlEncoded
+    Call<String> getinfo(@Field("userid") String userid, @Field("username") String username, @Field("realname") String realname
+            , @Field("birth") String birth,@Field("sex") String sex,@Field("signature") String signature);
+
 
 }

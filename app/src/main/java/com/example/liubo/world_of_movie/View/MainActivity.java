@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView main_me_text;
     private MyAlarmView swvWave;
     private FragmentManager fragmentManager;
+    public static String signup_userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initView() {
+        Intent intent = new Intent();
+        signup_userid = intent.getStringExtra("LOGIN");
         swvWave = (MyAlarmView) findViewById(R.id.shuibo);
         swvWave.handleDelay(85);
         //fragment显示窗口

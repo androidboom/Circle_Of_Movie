@@ -12,7 +12,7 @@ import com.hyphenate.easeui.EaseUI;
 
 public class MyApplication extends Application {
 
-    private static final String VALUE = "http://192.168.31.215:8080/springmvc/";
+    private static final String VALUE = "http://10.7.82.115:8080/springmvc/";
     private String value;
 
     @Override
