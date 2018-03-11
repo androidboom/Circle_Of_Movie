@@ -30,6 +30,15 @@
                 />
         </LinearLayout>
     </RelativeLayout>
+    <EditText
+        android:id="@+id/aaa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送"/>
     <ListView
         android:id="@+id/lv"
         android:layout_width="match_parent"
