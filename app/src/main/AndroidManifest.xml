@@ -81,6 +81,12 @@
         <activity android:name=".Me.UpadteActivity" >
         </activity>
 
+        <activity android:name=".Me.VersionActivity">
+        </activity>
+
+        <activity android:name=".Me.AboutUsActivity">
+        </activity>
+
     </application>
 
 </manifest>

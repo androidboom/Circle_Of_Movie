@@ -16,9 +16,12 @@ import com.example.liubo.world_of_movie.Login.ForgetPassword;
 import com.example.liubo.world_of_movie.Login.GetRequest_Interface;
 import com.example.liubo.world_of_movie.Login.LoginActivity;
 import com.example.liubo.world_of_movie.Login.Sign;
+import com.example.liubo.world_of_movie.Me.AboutUsActivity;
 import com.example.liubo.world_of_movie.Me.UpadteActivity;
+import com.example.liubo.world_of_movie.Me.VersionActivity;
 import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
+import com.hyphenate.chat.EMClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,7 +46,6 @@ public class FragmentMe extends Fragment {
     private TextView signup_userid;
     private TextView birth;
     private TextView sex;
-    private Button seting;
     private Button version;
     private Button aboutus;
     private Button logout;
@@ -74,7 +76,6 @@ public class FragmentMe extends Fragment {
         birth = (TextView)view.findViewById(R.id.birth);
         sex = (TextView)view.findViewById(R.id.sex);
 
-        seting = (Button)view.findViewById(R.id.seting);
         version = (Button)view.findViewById(R.id.version);
         aboutus = (Button)view.findViewById(R.id.aboutus);
         logout = (Button)view.findViewById(R.id.logout);
@@ -95,7 +96,6 @@ public class FragmentMe extends Fragment {
     }
 
     public void setListener(){
-        seting.setOnClickListener(MyListener);
         version.setOnClickListener(MyListener);
         aboutus.setOnClickListener(MyListener);
         logout.setOnClickListener(MyListener);
@@ -106,11 +106,15 @@ public class FragmentMe extends Fragment {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.seting:
-                    break;
                 case R.id.version:
+                    Intent intent1 = new Intent();
+                    intent1.setClass(getActivity(), VersionActivity.class);
+                    startActivity(intent1);
                     break;
                 case R.id.aboutus:
+                    Intent intent2 = new Intent();
+                    intent2.setClass(getActivity(), AboutUsActivity.class);
+                    startActivity(intent2);
                     break;
                 case R.id.update:
                     Intent intent = new Intent();
@@ -126,6 +130,10 @@ public class FragmentMe extends Fragment {
                     startActivity(intent);
                     break;
                 case R.id.logout:
+                    EMClient.getInstance().logout(true);    //同步方法
+                    Intent intent3 = new Intent();
+                    intent3.setClass(getActivity(),LoginActivity.class);
+                    startActivity(intent3);
                     break;
             }
         }
