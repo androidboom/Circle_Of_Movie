@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.liubo.world_of_movie.Login.GetRequest_Interface;
 import com.example.liubo.world_of_movie.MyApplication;
@@ -33,6 +35,9 @@ public class UpadteActivity extends AppCompatActivity {
     private Button submit;
     private String signup_userid;
     private MyApplication app;
+    private ImageView right_add;
+    private ImageView left_back;
+    private TextView title;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +54,13 @@ public class UpadteActivity extends AppCompatActivity {
         newbirth = (EditText)findViewById(R.id.newbirth);
         newsex = (EditText)findViewById(R.id.newsex);
         submit = (Button)findViewById(R.id.submit);
+
+        right_add = (ImageView)findViewById(R.id.right_add);
+        right_add.setVisibility(View.GONE);
+        left_back = (ImageView)findViewById(R.id.left_back);
+        left_back.setVisibility(View.GONE);
+        title = (TextView)findViewById(R.id.title);
+        title.setText("修改信息");
 
         Intent intent = new Intent();
         Bundle bundle = intent.getExtras();

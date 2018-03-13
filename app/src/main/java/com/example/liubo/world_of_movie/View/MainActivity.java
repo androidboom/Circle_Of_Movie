@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         swvWave.start();
         swvWave.setVisibility(View.VISIBLE);
         main_icon_text.setTextColor(getResources().getColor(R.color.ssf_main_color));
+        fragmentTransaction.commit();
         setListener();
     }
 
