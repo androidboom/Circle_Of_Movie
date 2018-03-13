@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView main_me_text;
     private MyAlarmView swvWave;
     private FragmentManager fragmentManager;
-    public static String signup_userid;
+    private String signup_userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +95,15 @@ public class MainActivity extends AppCompatActivity {
         fragmentcircle = new FragmentCircle();
         fragmentme = new FragmentMe();
         fragmentmain = new FragmentMain();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("signup_userid",signup_userid);
+
+        fragmentconcent.setArguments(bundle);
+        fragmentsurround.setArguments(bundle);
+        fragmentcircle.setArguments(bundle);
+        fragmentme.setArguments(bundle);
+        fragmentmain.setArguments(bundle);
     }
 
     public void setListener(){

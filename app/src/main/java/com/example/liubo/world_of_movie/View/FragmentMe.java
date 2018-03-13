@@ -55,6 +55,10 @@ public class FragmentMe extends Fragment {
     private String strrealname;
     private String strbirth;
     private String strsex;
+    private String mainsignup_userid;
+    private ImageView right_add;
+    private ImageView left_back;
+    private TextView title;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,6 +90,17 @@ public class FragmentMe extends Fragment {
         strrealname = realname.getText().toString();
         strbirth = birth.getText().toString();
         strsex = sex.getText().toString();
+
+        right_add = (ImageView)view.findViewById(R.id.right_add);
+        right_add.setVisibility(View.GONE);
+        left_back = (ImageView)view.findViewById(R.id.left_back);
+        left_back.setVisibility(View.GONE);
+        title = (TextView)view.findViewById(R.id.title);
+        title.setText("我");
+
+        mainsignup_userid = getArguments().getString("signup_userid");
+
+        //Log.v("testmaindata",mainsignup_userid);
 
         headerView.post(new Runnable() {
             @Override
@@ -124,7 +139,7 @@ public class FragmentMe extends Fragment {
                     bundle.putString("realname",strrealname);
                     bundle.putString("birth",strbirth);
                     bundle.putString("sex",strsex);
-                    bundle.putString("signup_userid",MainActivity.signup_userid);
+                    bundle.putString("signup_userid",mainsignup_userid);
                     intent.putExtras(bundle);
                     intent.setClass(getActivity(), UpadteActivity.class);
                     startActivity(intent);

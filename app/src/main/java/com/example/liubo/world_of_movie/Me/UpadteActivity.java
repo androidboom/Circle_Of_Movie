@@ -53,6 +53,7 @@ public class UpadteActivity extends AppCompatActivity {
         Intent intent = new Intent();
         Bundle bundle = intent.getExtras();
 
+        signup_userid = bundle.getString("signup_userid");
 //        newname.setText(String.valueOf(bundle.getString("name")));
 //        newnote.setText(String.valueOf(bundle.getString("note")));
 //        newrealname.setText(String.valueOf(bundle.getString("realname")));
@@ -92,7 +93,7 @@ public class UpadteActivity extends AppCompatActivity {
         GetRequest_Interface request = retrofit.create(GetRequest_Interface.class);
 
         // 对发送请求进行封装
-        Call<String> call = request.getinfo("18531148928", newname.getText().toString(),newrealname.getText().toString()
+        Call<String> call = request.getinfo(signup_userid, newname.getText().toString(),newrealname.getText().toString()
                 ,newbirth.getText().toString(),newsex.getText().toString(),newnote.getText().toString());
 
         // 发送网络请求(异步)

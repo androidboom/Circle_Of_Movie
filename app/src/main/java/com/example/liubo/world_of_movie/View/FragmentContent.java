@@ -17,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.liubo.world_of_movie.R;
 import com.hyphenate.EMConnectionListener;
@@ -52,6 +54,9 @@ public class FragmentContent extends EaseBaseFragment {
         }
 
     };
+    private ImageView right_add;
+    private ImageView left_back;
+    private TextView title;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,6 +78,12 @@ public class FragmentContent extends EaseBaseFragment {
         // button to clear content in search bar
         clearSearch = (ImageButton) getView().findViewById(com.hyphenate.easeui.R.id.search_clear);
         errorItemContainer = (FrameLayout) getView().findViewById(com.hyphenate.easeui.R.id.fl_error_item);
+        right_add = (ImageView)getView().findViewById(R.id.right_add);
+        right_add.setVisibility(View.GONE);
+        left_back = (ImageView)getView().findViewById(R.id.left_back);
+        left_back.setVisibility(View.GONE);
+        title = (TextView)getView().findViewById(R.id.title);
+        title.setText("会话");
     }
 
     @Override
