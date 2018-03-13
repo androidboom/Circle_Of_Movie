@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentcircle.setArguments(bundle);
         fragmentme.setArguments(bundle);
         fragmentmain.setArguments(bundle);
+
     }
 
     public void setListener(){

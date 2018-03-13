@@ -6,6 +6,8 @@
     android:background="@color/common_bg"
     android:orientation="vertical">
 
+    <include layout="@layout/topper" />
+
     <include layout="@layout/ease_search_bar" />
 
     <FrameLayout
