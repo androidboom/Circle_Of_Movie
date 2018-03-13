@@ -17,6 +17,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.liubo.world_of_movie.Adapter.CircleAdapter;
+import com.example.liubo.world_of_movie.Circle.SubmitCircle;
 import com.example.liubo.world_of_movie.IM.ChatActivity;
 import com.example.liubo.world_of_movie.Login.ForgetPassword;
 import com.example.liubo.world_of_movie.Login.LoginActivity;
@@ -84,7 +85,7 @@ public class FragmentCircle extends Fragment {
                     // TODO: 2016/5/17 设置动画
                     window.setAnimationStyle(R.style.popup_window_anim);
                     // TODO: 2016/5/17 设置背景颜色
-                    window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#96CDCD")));
+                    window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFFFFF")));
                     // TODO: 2016/5/17 设置可以获取焦点
                     window.setFocusable(true);
                     // TODO: 2016/5/17 设置可以触摸弹出框以外的区域
@@ -93,6 +94,16 @@ public class FragmentCircle extends Fragment {
                     window.update();
                     // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
                     window.showAsDropDown(right_add, 0, 40);
+                    popupView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent();
+                            intent.setClass(getActivity(), SubmitCircle.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("signup_userid",mainsignup_userid);
+                            startActivity(intent);
+                        }
+                    });
                     break;
             }
         }
