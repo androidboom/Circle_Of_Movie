@@ -4,13 +4,13 @@
     <!-- dashWidth指的是边线的长度 dashGap 指的是每条线之间的间距 width指的是边线的宽度 -->
     <stroke
         android:width="2dp"
-        android:color="#96CDCD"
+        android:color="#FFFFFF"
         android:dashGap="2dp" />
 
     <corners
-        android:bottomLeftRadius="0dp"
-        android:bottomRightRadius="0dp"
-        android:topLeftRadius="0dp"
-        android:topRightRadius="0dp" />
+        android:bottomLeftRadius="13dp"
+        android:bottomRightRadius="13dp"
+        android:topLeftRadius="13dp"
+        android:topRightRadius="13dp" />
 
 </shape>
