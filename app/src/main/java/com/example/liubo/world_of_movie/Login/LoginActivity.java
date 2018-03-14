@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView title;
     private TextView forget_pw;
     private MyApplication app;
+    private String id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
     };
 
     public void request() {
+        id = signup_userid.getText().toString();
 
         // 创建Retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
@@ -119,7 +121,9 @@ public class LoginActivity extends AppCompatActivity {
                 //signup();
                 Intent intent = new Intent();
                 intent.setClass(LoginActivity.this, MainActivity.class);
-                intent.putExtra("LOGIN",signup_userid.getText().toString());
+                Bundle bundle = new Bundle();
+                bundle.putString("LOGIN",id);
+                intent.putExtras(bundle);
                 startActivity(intent);
                 finish();
             }

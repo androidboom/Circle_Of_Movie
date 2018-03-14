@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.liubo.world_of_movie.BaseView.MyScrollView;
+import com.example.liubo.world_of_movie.Bean.UsersInfo;
 import com.example.liubo.world_of_movie.Login.ForgetPassword;
 import com.example.liubo.world_of_movie.Login.GetRequest_Interface;
 import com.example.liubo.world_of_movie.Login.LoginActivity;
@@ -21,7 +22,14 @@ import com.example.liubo.world_of_movie.Me.UpadteActivity;
 import com.example.liubo.world_of_movie.Me.VersionActivity;
 import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.hyphenate.chat.EMClient;
+
+import org.json.JSONArray;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,11 +67,13 @@ public class FragmentMe extends Fragment {
     private ImageView right_add;
     private ImageView left_back;
     private TextView title;
+    private List<UsersInfo>listViews;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_me,container,false);
         init();
+        request();
         setListener();
         return view;
     }
@@ -71,10 +81,10 @@ public class FragmentMe extends Fragment {
     private void init() {
         scrollview = (MyScrollView)view.findViewById(R.id.scrollview);
         headerView = view.findViewById(R.id.lay_header);
+
         imgView = (ImageView) view.findViewById(R.id.civ_avatar);
         name = (TextView)view.findViewById(R.id.name);
         note = (TextView)view.findViewById(R.id.note);
-
         realname = (TextView)view.findViewById(R.id.realname);
         signup_userid= (TextView)view.findViewById(R.id.signup_userid);
         birth = (TextView)view.findViewById(R.id.birth);
@@ -85,12 +95,6 @@ public class FragmentMe extends Fragment {
         logout = (Button)view.findViewById(R.id.logout);
         update = (Button)view.findViewById(R.id.update);
 
-        strname = name.getText().toString();
-        strnote = note.getText().toString();
-        strrealname = realname.getText().toString();
-        strbirth = birth.getText().toString();
-        strsex = sex.getText().toString();
-
         right_add = (ImageView)view.findViewById(R.id.right_add);
         right_add.setVisibility(View.GONE);
         left_back = (ImageView)view.findViewById(R.id.left_back);
@@ -98,9 +102,8 @@ public class FragmentMe extends Fragment {
         title = (TextView)view.findViewById(R.id.title);
         title.setText("我");
 
-        mainsignup_userid = getArguments().getString("signup_userid");
-
-        //Log.v("testmaindata",mainsignup_userid);
+        mainsignup_userid = getArguments().getString("LOGIN");
+        signup_userid.setText(mainsignup_userid);
 
         headerView.post(new Runnable() {
             @Override
@@ -158,7 +161,7 @@ public class FragmentMe extends Fragment {
 
         // 创建Retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(app.getValue()) // 设置网络请求 Url
+                .baseUrl("http://192.168.31.215:8080/springmvc/") // 设置网络请求 Url
                 // 增加返回值为String的支持
                 .addConverterFactory(ScalarsConverterFactory.create())
                 // 增加返回值为Gson的支持
@@ -169,25 +172,47 @@ public class FragmentMe extends Fragment {
         GetRequest_Interface request = retrofit.create(GetRequest_Interface.class);
 
         // 对发送请求进行封装
-        Call<String> call = request.getString("", "");
+        Call<String> call = request.getnewinfo(mainsignup_userid);
+        Log.v("123",mainsignup_userid);
 
         // 发送网络请求(异步)
         call.enqueue(new Callback<String>() {
             // 请求成功时回调
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Log.v("login", "影视圈登陆成功" + "response.message() = " + response.message() + "\n" +
+                Log.v("resume", "刷新个人信息成功" + "response.message() = " + response.message() + "\n" +
                         "response.body() = " + response.body());
+                Gson gson = new Gson();
+                Type type = new TypeToken<List<UsersInfo>>() {}.getType();
+                Object fromjson = gson.fromJson(response.body(),type);
+                listViews = (List<UsersInfo>) fromjson;
+
+                name.setText(listViews.get(0).getUsername());
+                note.setText(listViews.get(0).getSignature());
+                realname.setText(listViews.get(0).getReal_name());
+                birth.setText(listViews.get(0).getBirthday());
+                sex.setText(listViews.get(0).getSex());
+
+                strname = name.getText().toString();
+                strnote = note.getText().toString();
+                strrealname = realname.getText().toString();
+                strbirth = birth.getText().toString();
+                strsex = sex.getText().toString();
             }
 
             // 请求失败时回调
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Log.v("login", "影视圈登陆失败" + "onFailure = \n" + t.toString());
+                Log.v("resume", "刷新个人信息失败" + "onFailure = \n" + t.toString());
             }
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        request();
+    }
 
 
 }

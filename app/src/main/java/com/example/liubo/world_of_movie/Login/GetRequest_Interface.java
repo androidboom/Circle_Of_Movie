@@ -42,5 +42,7 @@ public interface GetRequest_Interface {
     Call<String> getinfo(@Field("userid") String userid, @Field("username") String username, @Field("realname") String realname
             , @Field("birth") String birth,@Field("sex") String sex,@Field("signature") String signature);
 
-
+    @POST("findUserInformation")
+    @FormUrlEncoded
+    Call<String> getnewinfo(@Field("userid") String userid);
 }

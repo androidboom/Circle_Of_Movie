@@ -55,9 +55,9 @@ public class SubmitCircle extends AppCompatActivity {
         title.setText("");
         content = (EditText)findViewById(R.id.content);
 
-        Intent intent = new Intent();
-        Bundle bundle = intent.getExtras();
+        Bundle bundle = this.getIntent().getExtras();
         signup_userid = bundle.getString("signup_userid");
+
     }
 
     public void setListener(){

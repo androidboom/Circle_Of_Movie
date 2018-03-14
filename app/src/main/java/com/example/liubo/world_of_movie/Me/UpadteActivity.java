@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.liubo.world_of_movie.Login.GetRequest_Interface;
 import com.example.liubo.world_of_movie.MyApplication;
@@ -62,16 +63,15 @@ public class UpadteActivity extends AppCompatActivity {
         title = (TextView)findViewById(R.id.title);
         title.setText("修改信息");
 
-        Intent intent = new Intent();
-        Bundle bundle = intent.getExtras();
+        Bundle bundle = this.getIntent().getExtras();
 
         signup_userid = bundle.getString("signup_userid");
-//        newname.setText(String.valueOf(bundle.getString("name")));
-//        newnote.setText(String.valueOf(bundle.getString("note")));
-//        newrealname.setText(String.valueOf(bundle.getString("realname")));
-//        newbirth.setText(String.valueOf(bundle.getString("birth")));
-//        newsex.setText(String.valueOf(bundle.getString("sex")));
-//        signup_userid = bundle.getString("signup_userid");
+        newname.setText(String.valueOf(bundle.getString("name")));
+        newnote.setText(String.valueOf(bundle.getString("note")));
+        newrealname.setText(String.valueOf(bundle.getString("realname")));
+        newbirth.setText(String.valueOf(bundle.getString("birth")));
+        newsex.setText(String.valueOf(bundle.getString("sex")));
+        signup_userid = bundle.getString("signup_userid");
     }
 
     public void setListener(){
@@ -84,6 +84,7 @@ public class UpadteActivity extends AppCompatActivity {
             switch (v.getId()){
                 case R.id.submit:
                     request();
+                    finish();
                     break;
 
             }
@@ -94,7 +95,7 @@ public class UpadteActivity extends AppCompatActivity {
 
         // 创建Retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.7.82.115:8080/springmvc/") // 设置网络请求 Url
+                .baseUrl("http://192.168.31.215:8080/springmvc/") // 设置网络请求 Url
                 // 增加返回值为String的支持
                 .addConverterFactory(ScalarsConverterFactory.create())
                 // 增加返回值为Gson的支持
@@ -115,6 +116,7 @@ public class UpadteActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.v("submit", "上传个人信息成功" + "response.message() = " + response.message() + "\n" +
                         "response.body() = " + response.body());
+                Toast.makeText(UpadteActivity.this, "修改信息成功", Toast.LENGTH_SHORT).show();
             }
 
             // 请求失败时回调

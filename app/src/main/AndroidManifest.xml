@@ -63,6 +63,7 @@
         </activity>
 
         <activity android:name=".View.MainActivity">
+
         </activity>
 
         <activity android:name=".Login.Sign">
@@ -86,6 +87,10 @@
 
         <activity android:name=".Me.AboutUsActivity">
         </activity>
+
+        <activity android:name=".Circle.SubmitCircle">
+        </activity>
+
 
     </application>
 

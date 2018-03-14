@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView main_me_text;
     private MyAlarmView swvWave;
     private FragmentManager fragmentManager;
-    private String signup_userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initView() {
-        Intent intent = new Intent();
-        signup_userid = intent.getStringExtra("LOGIN");
+        Bundle bundle = new Bundle();
+        bundle = this.getIntent().getExtras();
         swvWave = (MyAlarmView) findViewById(R.id.shuibo);
         swvWave.handleDelay(85);
         //fragment显示窗口
@@ -96,9 +96,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentcircle = new FragmentCircle();
         fragmentme = new FragmentMe();
         fragmentmain = new FragmentMain();
-
-        Bundle bundle = new Bundle();
-        bundle.putString("signup_userid",signup_userid);
 
         fragmentconcent.setArguments(bundle);
         fragmentsurround.setArguments(bundle);

@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Jack"
+                    android:text=""
                     android:textColor="@android:color/black"
                     android:textSize="15sp" />
                 <TextView
@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="说点什么吧。。。"
+                    android:text=""
                     android:textColor="@android:color/black"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -204,7 +204,7 @@
                         android:id="@+id/realname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="刘博"
+                        android:text=""
                         android:textSize="15dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -233,7 +233,7 @@
                         android:id="@+id/signup_userid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="18531148928"
+                        android:text=""
                         android:textSize="15dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -262,7 +262,7 @@
                         android:id="@+id/birth"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="19950103"
+                        android:text=""
                         android:textSize="15dp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -291,7 +291,7 @@
                         android:id="@+id/sex"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="男"
+                        android:text=""
                         android:textSize="15dp"/>
                 </LinearLayout>
             </LinearLayout>
