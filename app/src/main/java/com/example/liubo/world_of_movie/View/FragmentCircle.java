@@ -67,9 +67,9 @@ public class FragmentCircle extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_circle,null);
-
         init();
         setListener();
+        request();
         return view;
     }
 
@@ -100,7 +100,7 @@ public class FragmentCircle extends Fragment {
                     startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, testa.getText().toString()));
                     break;
                 case R.id.right_add:
-                    View popupView = getActivity().getLayoutInflater().inflate(R.layout.popupwindow, null);
+                    final View popupView = getActivity().getLayoutInflater().inflate(R.layout.popupwindow, null);
                     TextView poptext = (TextView) popupView.findViewById(R.id.poptext);
                     // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度
                     PopupWindow window = new PopupWindow(popupView, 300, 150);
@@ -132,45 +132,50 @@ public class FragmentCircle extends Fragment {
         }
     };
 
-//    public void request() {
-//
-//        // 创建Retrofit对象
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(app.getValue()) // 设置网络请求 Url
-//                // 增加返回值为String的支持
-//                .addConverterFactory(ScalarsConverterFactory.create())
-//                // 增加返回值为Gson的支持
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        // 创建网络请求接口的实例
-//        GetRequest_Interface request = retrofit.create(GetRequest_Interface.class);
-//
-//        // 对发送请求进行封装
-//        Call<String> call = request.getString(signup_userid.getText().toString(), signup_pw.getText().toString());
-//
-//        // 发送网络请求(异步)
-//        call.enqueue(new Callback<String>() {
-//            // 请求成功时回调
-//            @Override
-//            public void onResponse(Call<String> call, Response<String> response) {
-//                Log.v("login", "影视圈登陆成功" + "response.message() = " + response.message() + "\n" +
-//                        "response.body() = " + response.body());
-//                Gson gson = new Gson();
-//                Type type = new TypeToken<List<CircleInfo>>() {}.getType();
-//                Object fromjson = gson.fromJson(response.body(),type);
-//                listViews = (List<CircleInfo>) fromjson;
-//                CircleAdapter circleAdapter = new CircleAdapter(getActivity(),listViews);
-//                lv.setAdapter(circleAdapter);
-//
-//            }
-//
-//            // 请求失败时回调
-//            @Override
-//            public void onFailure(Call<String> call, Throwable t) {
-//                Log.v("login", "影视圈登陆失败" + "onFailure = \n" + t.toString());
-//            }
-//        });
-//    }
+    public void request() {
 
+        // 创建Retrofit对象
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.31.215:8080/springmvc/") // 设置网络请求 Url
+                // 增加返回值为String的支持
+                .addConverterFactory(ScalarsConverterFactory.create())
+                // 增加返回值为Gson的支持
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        // 创建网络请求接口的实例
+        GetRequest_Interface request = retrofit.create(GetRequest_Interface.class);
+
+        // 对发送请求进行封装
+        Call<String> call = request.scan();
+
+        // 发送网络请求(异步)
+        call.enqueue(new Callback<String>() {
+            // 请求成功时回调
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.v("scan", "获取圈子成功" + "response.message() = " + response.message() + "\n" +
+                        "response.body() = " + response.body());
+                Gson gson = new Gson();
+                Type type = new TypeToken<List<CircleInfo>>() {}.getType();
+                Object fromjson = gson.fromJson(response.body(),type);
+                listViews = (List<CircleInfo>) fromjson;
+                CircleAdapter circleAdapter = new CircleAdapter(getActivity(),listViews);
+                lv.setAdapter(circleAdapter);
+
+            }
+
+            // 请求失败时回调
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.v("scan", "获取圈子失败" + "onFailure = \n" + t.toString());
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        request();
+    }
 }

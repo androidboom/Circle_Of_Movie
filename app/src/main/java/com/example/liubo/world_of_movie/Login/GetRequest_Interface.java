@@ -45,4 +45,11 @@ public interface GetRequest_Interface {
     @POST("findUserInformation")
     @FormUrlEncoded
     Call<String> getnewinfo(@Field("userid") String userid);
+
+    @POST("issueMoments")
+    @FormUrlEncoded
+    Call<String> submit(@Field("userid") String userid,@Field("content") String content);
+
+    @GET("browseMoments")
+    Call<String> scan();
 }

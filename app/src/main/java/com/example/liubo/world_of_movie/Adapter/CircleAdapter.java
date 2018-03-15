@@ -56,7 +56,7 @@ public class CircleAdapter extends BaseAdapter {
             holder = new Holder();
             holder.user_icon = (ImageView) convertView.findViewById(R.id.user_icon);
             holder.name = (TextView) convertView.findViewById(R.id.name);
-            holder.data = (TextView) convertView.findViewById(R.id.data);
+            holder.date = (TextView) convertView.findViewById(R.id.data);
             holder.text = (TextView) convertView.findViewById(R.id.text);
             //holder.gridView = (GridView) convertView.findViewById(R.id.grid);
             holder.pinglun = (View)convertView.findViewById(R.id.layout_pinglun);
@@ -68,10 +68,12 @@ public class CircleAdapter extends BaseAdapter {
             holder = (Holder) convertView.getTag();
         }
 
-        holder.name.setText(getData.get(position).getName());
-        holder.data.setText(getData.get(position).getData());
-        holder.text.setText(getData.get(position).getText());
-        holder.tv_praise.setText(getData.get(position).getTv_praise());
+        String str= getData.get(position).getMoments_date();
+        String newstr = str.substring(5,16);
+        holder.name.setText(getData.get(position).getMoments_user());
+        holder.date.setText(newstr);
+        holder.text.setText(getData.get(position).getMoments_content());
+        holder.tv_praise.setText(getData.get(position).getMoments_praise());
 
         holder.pinglun.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +88,7 @@ public class CircleAdapter extends BaseAdapter {
     public class Holder {
         ImageView user_icon;
         TextView name;
-        TextView data;
+        TextView date;
         TextView text;
         //GridView gridView;
         View pinglun;

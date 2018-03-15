@@ -58,6 +58,8 @@ public class SubmitCircle extends AppCompatActivity {
         Bundle bundle = this.getIntent().getExtras();
         signup_userid = bundle.getString("signup_userid");
 
+        Log.v("submituserid",signup_userid);
+
     }
 
     public void setListener(){
@@ -73,43 +75,44 @@ public class SubmitCircle extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.right_add:
-                    //request();
+                    request();
                 break;
             }
         }
     };
 
-//    public void request() {
-//
-//        // 创建Retrofit对象
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(app.getValue()) // 设置网络请求 Url
-//                // 增加返回值为String的支持
-//                .addConverterFactory(ScalarsConverterFactory.create())
-//                // 增加返回值为Gson的支持
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        // 创建网络请求接口的实例
-//        GetRequest_Interface request = retrofit.create(GetRequest_Interface.class);
-//
-//        // 对发送请求进行封装
-//        Call<String> call = request.getString();
-//
-//        // 发送网络请求(异步)
-//        call.enqueue(new Callback<String>() {
-//            // 请求成功时回调
-//            @Override
-//            public void onResponse(Call<String> call, Response<String> response) {
-//                Log.v("login", "圈子发表成功" + "response.message() = " + response.message() + "\n" +
-//                        "response.body() = " + response.body());
-//            }
-//
-//            // 请求失败时回调
-//            @Override
-//            public void onFailure(Call<String> call, Throwable t) {
-//                Log.v("login", "圈子发表成功登陆失败" + "onFailure = \n" + t.toString());
-//            }
-//        });
-//    }
+    public void request() {
+
+        // 创建Retrofit对象
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.31.215:8080/springmvc/") // 设置网络请求 Url
+                // 增加返回值为String的支持
+                .addConverterFactory(ScalarsConverterFactory.create())
+                // 增加返回值为Gson的支持
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        // 创建网络请求接口的实例
+        GetRequest_Interface request = retrofit.create(GetRequest_Interface.class);
+
+        // 对发送请求进行封装
+        Call<String> call = request.submit(signup_userid,content.getText().toString());
+
+        // 发送网络请求(异步)
+        call.enqueue(new Callback<String>() {
+            // 请求成功时回调
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.v("submitcircle", "圈子发表成功" + "response.message() = " + response.message() + "\n" +
+                        "response.body() = " + response.body());
+                finish();
+            }
+
+            // 请求失败时回调
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.v("submitcircle", "圈子发表失败" + "onFailure = \n" + t.toString());
+            }
+        });
+    }
 }

@@ -5,40 +5,50 @@ package com.example.liubo.world_of_movie.Bean;
  */
 
 public class CircleInfo {
-    private String name;
-    private String data;
-    private String text;
-    private String tv_praise;
+    private String moments_id;
+    private String moments_user;
+    private String moments_date;
+    private String moments_content;
+    private String moments_praise;
 
-    public String getName() {
-        return name;
+    public String getMoments_id() {
+        return moments_id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMoments_id(String moments_id) {
+        this.moments_id = moments_id;
     }
 
-    public String getData() {
-        return data;
+    public String getMoments_user() {
+        return moments_user;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setMoments_user(String moments_user) {
+        this.moments_user = moments_user;
     }
 
-    public String getText() {
-        return text;
+
+    public String getMoments_content() {
+        return moments_content;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setMoments_content(String moments_content) {
+        this.moments_content = moments_content;
     }
 
-    public String getTv_praise() {
-        return tv_praise;
+    public String getMoments_praise() {
+        return moments_praise;
     }
 
-    public void setTv_praise(String tv_praise) {
-        this.tv_praise = tv_praise;
+    public void setMoments_praise(String moments_praise) {
+        this.moments_praise = moments_praise;
+    }
+
+    public String getMoments_date() {
+        return moments_date;
+    }
+
+    public void setMoments_date(String moments_date) {
+        this.moments_date = moments_date;
     }
 }
