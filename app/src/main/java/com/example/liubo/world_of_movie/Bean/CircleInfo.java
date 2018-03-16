@@ -1,5 +1,7 @@
 package com.example.liubo.world_of_movie.Bean;
 
+import java.util.List;
+
 /**
  * Created by Liubo on 2018/3/14.
  */
@@ -10,6 +12,7 @@ public class CircleInfo {
     private String moments_date;
     private String moments_content;
     private String moments_praise;
+    private List<DiscussInfo> listDiscuss;
 
     public String getMoments_id() {
         return moments_id;
@@ -50,5 +53,13 @@ public class CircleInfo {
 
     public void setMoments_date(String moments_date) {
         this.moments_date = moments_date;
+    }
+
+    public List<DiscussInfo> getListDiscuss() {
+        return listDiscuss;
+    }
+
+    public void setListDiscuss(List<DiscussInfo> listDiscuss) {
+        this.listDiscuss = listDiscuss;
     }
 }

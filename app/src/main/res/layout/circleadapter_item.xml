@@ -103,10 +103,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout_bottom"
         android:orientation="vertical">
-        <ListView
+        <com.example.liubo.world_of_movie.BaseView.SearchListView
             android:id="@+id/lv_pinglun"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        </ListView>
+        </com.example.liubo.world_of_movie.BaseView.SearchListView>
     </LinearLayout>
 </RelativeLayout>

@@ -4,19 +4,24 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.liubo.world_of_movie.Adapter.CircleAdapter;
 import com.example.liubo.world_of_movie.Bean.CircleInfo;
@@ -47,6 +52,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 /**
  * Created by Liubo on 2017/12/27.
  */
@@ -60,6 +67,11 @@ public class FragmentCircle extends Fragment {
     private TextView title;
     private MyApplication app;
     private List<CircleInfo> listViews;
+    private LinearLayout commentLinear;
+    private String positionid;
+    private EditText commentEdit;
+    private Button commentButton;
+    private String commentEdittext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,6 +90,11 @@ public class FragmentCircle extends Fragment {
         left_back.setVisibility(View.GONE);
         title = (TextView)view.findViewById(R.id.title);
         title.setText("圈子");
+
+        commentLinear = (LinearLayout)view.findViewById(R.id.commentLinear);
+        commentEdit = (EditText)view.findViewById(R.id.commentEdit);
+        commentButton = (Button)view.findViewById(R.id.commentButton);
+
 
     }
 
@@ -151,7 +168,7 @@ public class FragmentCircle extends Fragment {
                 Type type = new TypeToken<List<CircleInfo>>() {}.getType();
                 Object fromjson = gson.fromJson(response.body(),type);
                 listViews = (List<CircleInfo>) fromjson;
-                CircleAdapter circleAdapter = new CircleAdapter(getActivity(),listViews);
+                CircleAdapter circleAdapter = new CircleAdapter(getActivity(),listViews,handler);
                 lv.setAdapter(circleAdapter);
 
             }
@@ -164,9 +181,91 @@ public class FragmentCircle extends Fragment {
         });
     }
 
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what == 1){
+                positionid = (String)msg.obj;
+                commentLinear.setVisibility(View.VISIBLE);
+                onFocusChange(true);
+                commentButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(commentEdit.getText().toString() == null){
+                            Toast.makeText(getActivity(), "请输入内容", Toast.LENGTH_SHORT).show();
+                        }else {
+                            commentEdittext = commentEdit.getText().toString();
+                            requestcomment();
+                            commentLinear.setVisibility(View.GONE);
+                            onFocusChange(false);
+                            request();
+                        }
+                    }
+                });
+            }
+        }
+    };
+
     @Override
     public void onResume() {
         super.onResume();
         request();
     }
+
+    /**
+     * 显示或隐藏输入法
+     */
+    private void onFocusChange(boolean hasFocus){
+        final boolean isFocus = hasFocus;
+        (new Handler()).postDelayed(new Runnable() {
+            public void run() {
+                InputMethodManager imm = (InputMethodManager)
+                        commentEdit.getContext().getSystemService(INPUT_METHOD_SERVICE);
+                if(isFocus)  {
+                    //显示输入法
+                    imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                }else{
+                    //隐藏输入法
+                    imm.hideSoftInputFromWindow(commentEdit.getWindowToken(),0);
+                }
+            }
+        }, 100);
+    }
+
+    public void requestcomment() {
+
+        // 创建Retrofit对象
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.31.215:8080/springmvc/") // 设置网络请求 Url
+                // 增加返回值为String的支持
+                .addConverterFactory(ScalarsConverterFactory.create())
+                // 增加返回值为Gson的支持
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        // 创建网络请求接口的实例
+        GetRequest_Interface request = retrofit.create(GetRequest_Interface.class);
+
+        // 对发送请求进行封装
+        Call<String> call = request.add(mainsignup_userid,positionid,commentEdittext);
+
+        // 发送网络请求(异步)
+        call.enqueue(new Callback<String>() {
+            // 请求成功时回调
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.v("pinglun", "发表评论成功" + "response.message() = " + response.message() + "\n" +
+                        "response.body() = " + response.body());
+
+            }
+
+            // 请求失败时回调
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.v("pinglun", "发表评论失败" + "onFailure = \n" + t.toString());
+            }
+        });
+    }
+
 }

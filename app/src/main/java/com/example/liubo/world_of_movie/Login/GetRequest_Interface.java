@@ -52,4 +52,12 @@ public interface GetRequest_Interface {
 
     @GET("browseMoments")
     Call<String> scan();
+
+    @POST("addDiscuss")
+    @FormUrlEncoded
+    Call<String> add(@Field("userid") String userid,@Field("moments_id") String moments_id,@Field("content") String content);
+
+    @POST("addPraise")
+    @FormUrlEncoded
+    Call<String> praise(@Field("moments_id") String moments_id);
 }
