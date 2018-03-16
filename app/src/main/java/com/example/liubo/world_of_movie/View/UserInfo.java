@@ -6,10 +6,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.liubo.world_of_movie.Bean.UsersInfo;
+import com.example.liubo.world_of_movie.IM.ChatActivity;
 import com.example.liubo.world_of_movie.Login.GetRequest_Interface;
 import com.example.liubo.world_of_movie.Login.LoginActivity;
 import com.example.liubo.world_of_movie.Me.AboutUsActivity;
@@ -19,6 +21,7 @@ import com.example.liubo.world_of_movie.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.EaseConstant;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -47,6 +50,7 @@ public class UserInfo extends AppCompatActivity {
     private TextView sex;
     private List<UsersInfo> listViews;
     private String mainsignup_userid;
+    private Button chat;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,10 +77,13 @@ public class UserInfo extends AppCompatActivity {
         signup_userid= (TextView)findViewById(R.id.signup_userid);
         birth = (TextView)findViewById(R.id.birth);
         sex = (TextView)findViewById(R.id.sex);
+
+        chat = (Button)findViewById(R.id.chat);
     }
 
     public void setListener(){
         left_back.setOnClickListener(MyListener);
+        chat.setOnClickListener(MyListener);
     }
 
     View.OnClickListener MyListener = new View.OnClickListener() {
@@ -85,6 +92,10 @@ public class UserInfo extends AppCompatActivity {
             switch (v.getId()){
                 case R.id.left_back:
                     finish();
+                    break;
+                case R.id.chat:
+                    startActivity(new Intent(UserInfo.this, ChatActivity.class).
+                            putExtra(EaseConstant.EXTRA_USER_ID,"im" + mainsignup_userid));
                     break;
             }
         }

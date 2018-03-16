@@ -54,9 +54,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class FragmentCircle extends Fragment {
     private View view;
     private ListView lv;
-    private JSONArray Data;
-    private Button test;
-    private EditText testa;
     private String mainsignup_userid;
     private ImageView right_add;
     private ImageView left_back;
@@ -75,19 +72,16 @@ public class FragmentCircle extends Fragment {
 
     public void init(){
         lv = (ListView)view.findViewById(R.id.lv);
-        test = (Button) view.findViewById(R.id.test);
-        testa = (EditText)view.findViewById(R.id.aaa);
         mainsignup_userid = getArguments().getString("LOGIN");
         right_add = (ImageView)view.findViewById(R.id.right_add);
         left_back = (ImageView)view.findViewById(R.id.left_back);
-        //left_back.setVisibility(View.GONE);
+        left_back.setVisibility(View.GONE);
         title = (TextView)view.findViewById(R.id.title);
         title.setText("圈子");
 
     }
 
     public void setListener(){
-        test.setOnClickListener(MyListener);
         right_add.setOnClickListener(MyListener);
 
     }
@@ -96,9 +90,6 @@ public class FragmentCircle extends Fragment {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.test:
-                    startActivity(new Intent(getActivity(), ChatActivity.class).putExtra(EaseConstant.EXTRA_USER_ID, testa.getText().toString()));
-                    break;
                 case R.id.right_add:
                     final View popupView = getActivity().getLayoutInflater().inflate(R.layout.popupwindow, null);
                     TextView poptext = (TextView) popupView.findViewById(R.id.poptext);
