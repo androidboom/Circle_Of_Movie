@@ -85,7 +85,7 @@
             android:layout_weight="1"
             android:gravity="center">
             <ImageView
-                android:id="@+id/iv_praise"
+                android:id="@+id/# 72ACE3"
                 android:layout_width="17dp"
                 android:layout_height="17dp"
                 android:layout_marginRight="5dp"

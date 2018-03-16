@@ -1,7 +1,9 @@
 package com.example.liubo.world_of_movie.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.DataSetObserver;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.liubo.world_of_movie.Bean.CircleInfo;
+import com.example.liubo.world_of_movie.Bean.UsersInfo;
 import com.example.liubo.world_of_movie.R;
 
 import org.json.JSONArray;
@@ -50,7 +53,7 @@ public class CircleAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.circleadapter_item, null);
             holder = new Holder();
@@ -62,6 +65,7 @@ public class CircleAdapter extends BaseAdapter {
             holder.pinglun = (View)convertView.findViewById(R.id.layout_pinglun);
             holder.praise = (View)convertView.findViewById(R.id.layout_praise);
             holder.tv_praise = (TextView)convertView.findViewById(R.id.tv_praise);
+            holder.imageView = (ImageView) convertView.findViewById(R.id.iv_praise);
 
             convertView.setTag(holder);
         } else {
@@ -74,11 +78,30 @@ public class CircleAdapter extends BaseAdapter {
         holder.date.setText(newstr);
         holder.text.setText(getData.get(position).getMoments_content());
         holder.tv_praise.setText(getData.get(position).getMoments_praise());
+        final String strid = getData.get(position).getMoments_id();
 
         holder.pinglun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+
+        holder.praise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        holder.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putString("signup_userid",strid);
+                intent.putExtras(bundle);
+                intent.setClass(context, UsersInfo.class);
             }
         });
 
@@ -94,6 +117,7 @@ public class CircleAdapter extends BaseAdapter {
         View pinglun;
         View praise;
         TextView tv_praise;
+        ImageView imageView;
     }
 
 }
