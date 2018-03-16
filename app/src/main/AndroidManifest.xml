@@ -91,6 +91,9 @@
         <activity android:name=".Circle.SubmitCircle">
         </activity>
 
+        <activity android:name=".View.UserInfo">
+        </activity>
+
 
     </application>
 
