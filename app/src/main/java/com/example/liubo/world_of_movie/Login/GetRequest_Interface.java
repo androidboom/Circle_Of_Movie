@@ -60,4 +60,7 @@ public interface GetRequest_Interface {
     @POST("addPraise")
     @FormUrlEncoded
     Call<String> praise(@Field("moments_id") String moments_id);
+
+    @GET("browseMovie")
+    Call<String> getVideoInfo();
 }

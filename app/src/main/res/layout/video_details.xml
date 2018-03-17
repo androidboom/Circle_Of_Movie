@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_video_rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/statusbar_bg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true" >
+    </TextView>
+
+    <RelativeLayout
+        android:id="@+id/video_rl"
+        android:layout_width="match_parent"
+        android:layout_height="202dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/library_video_video_margin_top"
+        android:background="@android:color/black" >
+
+        <com.example.liubo.world_of_movie.video.WylVideoView
+            android:id="@+id/videoview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+
+        <ProgressBar
+            android:id="@+id/loading_pb"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/video_image_iv"
+        android:layout_width="match_parent"
+        android:layout_height="202dp"
+        android:layout_alignTop="@id/video_rl"
+        android:scaleType="centerCrop" />
+
+    <com.example.liubo.world_of_movie.video.WylMediaControl
+        android:id="@+id/media_control"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/library_video_controlbar_height"
+        android:layout_alignBottom="@id/video_rl" >
+
+        <RelativeLayout
+            android:id="@+id/video_control_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_video_play_shadow" >
+
+            <ImageButton
+                android:id="@+id/mediacontroller_play_pause"
+                android:layout_width="@dimen/library_video_controlbar_height"
+                android:layout_height="@dimen/library_video_controlbar_height"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:src="@mipmap/library_video_mediacontroller_play" />
+
+            <SeekBar
+                android:id="@+id/mediacontroller_seekbar"
+                style="@style/LibraryVideoMediaControllerSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/mediacontroller_time_total"
+                android:layout_toRightOf="@id/mediacontroller_play_pause"
+                android:focusable="true"
+                android:max="1000"
+                android:thumbOffset="0dp" />
+
+            <TextView
+                android:id="@+id/mediacontroller_time_current"
+                style="@style/MediaController_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/mediacontroller_play_pause"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/mediacontroller_half_full_ib"
+                android:layout_width="@dimen/library_video_controlbar_height"
+                android:layout_height="@dimen/library_video_controlbar_height"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:src="@mipmap/library_video_mediacontroller_to_full" />
+
+            <TextView
+                android:id="@+id/mediacontroller_time_total"
+                style="@style/MediaController_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/mediacontroller_half_full_ib" />
+        </RelativeLayout>
+    </com.example.liubo.world_of_movie.video.WylMediaControl>
+
+    <ImageView
+        android:id="@+id/play_symbol_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/video_rl"
+        android:layout_alignTop="@id/video_rl"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/library_video_play_symbol" />
+
+    <TextView
+        android:id="@+id/divider_tv"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@id/video_rl"
+        android:background="@color/theme_bg_color" />
+
+    <LinearLayout
+        android:layout_below="@id/divider_tv"
+        android:id="@+id/video_info"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="25dp"
+                android:text="刘波傻逼"
+                android:id="@+id/video_details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/video_details_d"
+                android:layout_marginLeft="10dp"
+                android:textSize="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="简介："
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/video_details_pro"
+            android:textSize="15dp"
+            android:text="刘波杀必死的看法发来电恢复了的撒法拉第是否会来了护理费had数据库房间看电视方便的部分都是发打算发到付回家"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:text="评论"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ListView
+            android:id="@+id/video_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+    </LinearLayout>
+</RelativeLayout>
