@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.liubo.world_of_movie.Adapter.CircleAdapter;
 import com.example.liubo.world_of_movie.Bean.CircleInfo;
+import com.example.liubo.world_of_movie.Bean.UsersInfo;
 import com.example.liubo.world_of_movie.Circle.SubmitCircle;
 import com.example.liubo.world_of_movie.IM.ChatActivity;
 import com.example.liubo.world_of_movie.Login.ForgetPassword;
@@ -203,6 +204,13 @@ public class FragmentCircle extends Fragment {
                         }
                     }
                 });
+            }else if(msg.what == 2){
+                positionid = (String)msg.obj;
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putString("signup_userid",positionid);
+                intent.putExtras(bundle);
+                intent.setClass(getActivity(), UserInfo.class);
             }
         }
     };
