@@ -99,7 +99,6 @@ public class CircleAdapter extends BaseAdapter {
 
         List<DiscussInfo> listdata = getData.get(position).getListDiscuss();
         CirclePingLunAdapter circlePingLunAdapter = new CirclePingLunAdapter(context,listdata);
-        Log.v("sacn","listdata" + listdata);
         holder.lv_pinglun.setAdapter(circlePingLunAdapter);
 
         holder.praise.setOnClickListener(new View.OnClickListener() {
@@ -136,22 +135,20 @@ public class CircleAdapter extends BaseAdapter {
         holder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                Bundle bundle = new Bundle();
-                bundle.putString("signup_userid",getData.get(position).getMoments_id());
-                intent.putExtras(bundle);
-                intent.setClass(context, UsersInfo.class);
+                Message message = new Message();
+                message.what = 2;
+                message.obj = getData.get(position).getMoments_id();
+                handler.sendMessage(message);
             }
         });
 
         holder.user_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                Bundle bundle = new Bundle();
-                bundle.putString("signup_userid",getData.get(position).getMoments_id());
-                intent.putExtras(bundle);
-                intent.setClass(context, UsersInfo.class);
+                Message message = new Message();
+                message.what = 2;
+                message.obj = getData.get(position).getMoments_id();
+                handler.sendMessage(message);
             }
         });
 
