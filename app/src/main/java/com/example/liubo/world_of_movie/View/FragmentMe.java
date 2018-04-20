@@ -161,7 +161,7 @@ public class FragmentMe extends Fragment {
 
         // 创建Retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.31.215:8080/springmvc/") // 设置网络请求 Url
+                .baseUrl(MyApplication.VALUE) // 设置网络请求 Url
                 // 增加返回值为String的支持
                 .addConverterFactory(ScalarsConverterFactory.create())
                 // 增加返回值为Gson的支持
