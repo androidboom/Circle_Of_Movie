@@ -72,6 +72,7 @@ public class FragmentCircle extends Fragment {
     private EditText commentEdit;
     private Button commentButton;
     private String commentEdittext;
+    private View vHead;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -84,6 +85,8 @@ public class FragmentCircle extends Fragment {
 
     public void init(){
         lv = (ListView)view.findViewById(R.id.lv);
+        vHead= View.inflate(getActivity(), R.layout.listview_topstytle, null);
+        lv.addHeaderView(vHead);
         mainsignup_userid = getArguments().getString("LOGIN");
         right_add = (ImageView)view.findViewById(R.id.right_add);
         left_back = (ImageView)view.findViewById(R.id.left_back);
