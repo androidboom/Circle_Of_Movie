@@ -12,14 +12,14 @@ import com.hyphenate.easeui.EaseUI;
 
 public class MyApplication extends Application {
 
-    //private static final String VALUE = "http://10.7.82.115:8080/springmvc/";
-    private static final String VALUE = "http://192.168.31.215:8080/springmvc/";
-    private String value;
+//    private static final String VALUE = "http://10.7.82.115:8080/springmvc/";
+//    public static final String VALUE = "http://192.168.31.215:8080/springmvc/";
+    public static final String VALUE = "http://172.16.1.171:8080/springmvc/";
+    public String value;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        setValue(VALUE); // 初始化全局变量
 
         EMOptions options = new EMOptions();
         options.setAutoLogin(false);
@@ -27,13 +27,4 @@ public class MyApplication extends Application {
         EMClient.getInstance().setDebugMode(true);
     }
 
-    public void setValue(String value)
-    {
-        this.value = value;
-    }
-
-    public String getValue()
-    {
-        return value;
-    }
 }
