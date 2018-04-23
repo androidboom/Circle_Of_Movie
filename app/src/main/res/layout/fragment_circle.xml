@@ -4,41 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/topper" />
+    <include
+        android:id="@+id/top"
+        layout="@layout/topper" />
 
-    <RelativeLayout
-        android:id="@+id/topstytle"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginBottom="5dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/background"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="3dp"
-            android:layout_marginRight="12dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/background"
-                />
-        </LinearLayout>
-    </RelativeLayout>
     <ListView
         android:id="@+id/lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/topstytle"
+        android:layout_below="@+id/top"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="5dp"
         android:listSelector="@android:color/transparent"  >
     </ListView>
 

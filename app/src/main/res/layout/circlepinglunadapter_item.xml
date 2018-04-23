@@ -2,18 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="5dp">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="5dp"
         android:text="姓名"
         android:textColor="#72ACE3"
-        android:textSize="15dp"/>
+        android:textSize="13dp"/>
     <TextView
         android:id="@+id/text1"
         android:layout_toRightOf="@+id/name"
@@ -23,16 +22,25 @@
         android:layout_marginTop="5dp"
         android:layout_below="@+id/layout_headline"
         android:text="回复你:"
-        android:textSize="15dp" />
+        android:textSize="13dp" />
     <TextView
         android:id="@+id/text"
         android:layout_toRightOf="@+id/text1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:layout_below="@+id/layout_headline"
         android:text="回复内容······"
-        android:textSize="15dp" />
+        android:maxLines="2"
+        android:textSize="13dp" />
+    <!--<View-->
+        <!--android:id="@+id/viewline"-->
+        <!--android:layout_below="@+id/text"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:background="#e6e6e6" />-->
 
 </RelativeLayout>

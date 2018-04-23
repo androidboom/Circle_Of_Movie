@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/user_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
         android:background="@drawable/common_user_icon"
@@ -34,6 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:theme="@style/MyEditText"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"/>
@@ -58,6 +59,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:layout_gravity="center_vertical"
+            android:theme="@style/MyEditText"
+            android:inputType="textPassword"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"/>
     </LinearLayout>

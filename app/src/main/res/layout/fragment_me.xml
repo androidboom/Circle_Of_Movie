@@ -28,7 +28,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginTop="40dp"
-                    android:src="@drawable/ic_account_box_black_24dp" />
+                    android:src="@drawable/common_user_icon" />
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
