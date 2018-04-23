@@ -20,6 +20,7 @@ import com.example.liubo.world_of_movie.Bean.CircleInfo;
 import com.example.liubo.world_of_movie.Bean.DiscussInfo;
 import com.example.liubo.world_of_movie.Bean.UsersInfo;
 import com.example.liubo.world_of_movie.Login.GetRequest_Interface;
+import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
 
 import org.json.JSONArray;
@@ -182,7 +183,7 @@ public class CircleAdapter extends BaseAdapter {
 
         // 创建Retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.31.215:8080/springmvc/") // 设置网络请求 Url
+                .baseUrl(MyApplication.VALUE) // 设置网络请求 Url
                 // 增加返回值为String的支持
                 .addConverterFactory(ScalarsConverterFactory.create())
                 // 增加返回值为Gson的支持
