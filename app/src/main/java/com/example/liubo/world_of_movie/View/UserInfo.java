@@ -17,6 +17,7 @@ import com.example.liubo.world_of_movie.Login.LoginActivity;
 import com.example.liubo.world_of_movie.Me.AboutUsActivity;
 import com.example.liubo.world_of_movie.Me.UpadteActivity;
 import com.example.liubo.world_of_movie.Me.VersionActivity;
+import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -51,6 +52,7 @@ public class UserInfo extends AppCompatActivity {
     private List<UsersInfo> listViews;
     private String mainsignup_userid;
     private Button chat;
+    private MyApplication app;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -105,7 +107,7 @@ public class UserInfo extends AppCompatActivity {
 
         // 创建Retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.31.215:8080/springmvc/") // 设置网络请求 Url
+                .baseUrl(MyApplication.VALUE) // 设置网络请求 Url
                 // 增加返回值为String的支持
                 .addConverterFactory(ScalarsConverterFactory.create())
                 // 增加返回值为Gson的支持
