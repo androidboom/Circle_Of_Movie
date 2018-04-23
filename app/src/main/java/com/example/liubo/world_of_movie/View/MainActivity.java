@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,7 +17,9 @@ import android.widget.TextView;
 import com.example.liubo.world_of_movie.BaseView.MyAlarmView;
 
 import com.example.liubo.world_of_movie.IM.ChatActivity;
+import com.example.liubo.world_of_movie.Login.LoginActivity;
 import com.example.liubo.world_of_movie.R;
+import com.example.liubo.world_of_movie.Utils.LoginSharedPreferences;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.domain.EaseUser;
@@ -48,11 +51,24 @@ public class MainActivity extends AppCompatActivity {
     private TextView main_me_text;
     private MyAlarmView swvWave;
     private FragmentManager fragmentManager;
+    private String login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        login = LoginSharedPreferences.getString(this, "login", "");
+        if (!TextUtils.isEmpty(login)){
+            if (!login.equals("true")){
+                finish();
+                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+            }
+        }else {
+            finish();
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+        }
+
         initView();
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

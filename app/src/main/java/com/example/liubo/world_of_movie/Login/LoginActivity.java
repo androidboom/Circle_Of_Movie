@@ -15,6 +15,7 @@ import com.example.liubo.world_of_movie.Bean.LoginBean;
 import com.example.liubo.world_of_movie.IM.IMTest;
 import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
+import com.example.liubo.world_of_movie.Utils.LoginSharedPreferences;
 import com.example.liubo.world_of_movie.View.MainActivity;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
@@ -119,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.v("login", "影视圈登陆成功" + "response.message() = " + response.message() + "\n" +
                         "response.body() = " + response.body());
                 //signup();
+                LoginSharedPreferences.putString(LoginActivity.this,"login","true");
                 Intent intent = new Intent();
                 intent.setClass(LoginActivity.this, MainActivity.class);
                 Bundle bundle = new Bundle();
