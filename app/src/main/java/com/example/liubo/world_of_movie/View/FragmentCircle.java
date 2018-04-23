@@ -34,6 +34,7 @@ import com.example.liubo.world_of_movie.Login.LoginActivity;
 import com.example.liubo.world_of_movie.Login.Sign;
 import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
+import com.example.liubo.world_of_movie.Utils.LoginSharedPreferences;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hyphenate.easeui.EaseConstant;
@@ -87,7 +88,8 @@ public class FragmentCircle extends Fragment {
         lv = (ListView)view.findViewById(R.id.lv);
         vHead= View.inflate(getActivity(), R.layout.listview_topstytle, null);
         lv.addHeaderView(vHead);
-        mainsignup_userid = getArguments().getString("LOGIN");
+//        mainsignup_userid = getArguments().getString("LOGIN");
+        mainsignup_userid = LoginSharedPreferences.getString(getActivity(), "login", "");
         right_add = (ImageView)view.findViewById(R.id.right_add);
         left_back = (ImageView)view.findViewById(R.id.left_back);
         left_back.setVisibility(View.GONE);

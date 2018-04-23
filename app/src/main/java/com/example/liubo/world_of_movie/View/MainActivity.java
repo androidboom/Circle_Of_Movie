@@ -82,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initView() {
-        Bundle bundle = new Bundle();
-        bundle = this.getIntent().getExtras();
+//        Bundle bundle = new Bundle();
+//        bundle = this.getIntent().getExtras();
         swvWave = (MyAlarmView) findViewById(R.id.shuibo);
         swvWave.handleDelay(85);
         //fragment显示窗口
@@ -113,11 +113,11 @@ public class MainActivity extends AppCompatActivity {
         fragmentme = new FragmentMe();
         fragmentmain = new FragmentMain();
 
-        fragmentconcent.setArguments(bundle);
-        fragmentsurround.setArguments(bundle);
-        fragmentcircle.setArguments(bundle);
-        fragmentme.setArguments(bundle);
-        fragmentmain.setArguments(bundle);
+//        fragmentconcent.setArguments(bundle);
+//        fragmentsurround.setArguments(bundle);
+//        fragmentcircle.setArguments(bundle);
+//        fragmentme.setArguments(bundle);
+//        fragmentmain.setArguments(bundle);
 
     }
 

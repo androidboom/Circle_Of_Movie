@@ -22,6 +22,7 @@ import com.example.liubo.world_of_movie.Me.UpadteActivity;
 import com.example.liubo.world_of_movie.Me.VersionActivity;
 import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
+import com.example.liubo.world_of_movie.Utils.LoginSharedPreferences;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hyphenate.chat.EMClient;
@@ -102,7 +103,8 @@ public class FragmentMe extends Fragment {
         title = (TextView)view.findViewById(R.id.title);
         title.setText("我");
 
-        mainsignup_userid = getArguments().getString("LOGIN");
+//        mainsignup_userid = getArguments().getString("LOGIN");
+        mainsignup_userid = LoginSharedPreferences.getString(getActivity(), "login", "");
         signup_userid.setText(mainsignup_userid);
 
         headerView.post(new Runnable() {
@@ -148,7 +150,7 @@ public class FragmentMe extends Fragment {
                     startActivity(intent);
                     break;
                 case R.id.logout:
-                    EMClient.getInstance().logout(true);    //同步方法
+                    //EMClient.getInstance().logout(true);    //同步方法
                     Intent intent3 = new Intent();
                     intent3.setClass(getActivity(),LoginActivity.class);
                     startActivity(intent3);

@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
     };
 
     public void request() {
-        id = signup_userid.getText().toString();
+//        id = signup_userid.getText().toString();
 
         // 创建Retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
@@ -123,9 +123,9 @@ public class LoginActivity extends AppCompatActivity {
                 LoginSharedPreferences.putString(LoginActivity.this,"login","true");
                 Intent intent = new Intent();
                 intent.setClass(LoginActivity.this, MainActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("LOGIN",id);
-                intent.putExtras(bundle);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("LOGIN",id);
+//                intent.putExtras(bundle);
                 startActivity(intent);
                 finish();
             }
