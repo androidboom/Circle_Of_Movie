@@ -192,9 +192,9 @@ public class FragmentMe extends Fragment {
                 Object fromjson = gson.fromJson(response.body(),type);
                 listViews = (List<UsersInfo>) fromjson;
 
-                name.setText(listViews.get(0).getUsername());
+                name.setText(listViews.get(0).getReal_name());
                 note.setText(listViews.get(0).getSignature());
-                realname.setText(listViews.get(0).getReal_name());
+                realname.setText(listViews.get(0).getUsername());
                 birth.setText(listViews.get(0).getBirthday());
                 sex.setText(listViews.get(0).getSex());
 
