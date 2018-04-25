@@ -74,6 +74,8 @@ public class FragmentCircle extends Fragment {
     private Button commentButton;
     private String commentEdittext;
     private View vHead;
+    private PopupWindow window;
+    private View popupView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -113,10 +115,10 @@ public class FragmentCircle extends Fragment {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.right_add:
-                    final View popupView = getActivity().getLayoutInflater().inflate(R.layout.popupwindow, null);
+                    popupView = getActivity().getLayoutInflater().inflate(R.layout.popupwindow, null);
                     TextView poptext = (TextView) popupView.findViewById(R.id.poptext);
                     // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度
-                    PopupWindow window = new PopupWindow(popupView, 300, 150);
+                    window = new PopupWindow(popupView, 300, 150);
                     // TODO: 2016/5/17 设置动画
                     window.setAnimationStyle(R.style.popup_window_anim);
                     // TODO: 2016/5/17 设置背景颜色
@@ -138,6 +140,7 @@ public class FragmentCircle extends Fragment {
                             bundle.putString("signup_userid",mainsignup_userid);
                             intent.putExtras(bundle);
                             startActivity(intent);
+                            window.dismiss();
                         }
                     });
                     break;
