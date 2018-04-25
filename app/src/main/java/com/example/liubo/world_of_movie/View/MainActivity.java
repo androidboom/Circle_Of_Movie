@@ -2,12 +2,14 @@ package com.example.liubo.world_of_movie.View;
 
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private MyAlarmView swvWave;
     private FragmentManager fragmentManager;
     private String login;
+    private Fragment mCurrentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,29 +146,34 @@ public class MainActivity extends AppCompatActivity {
             resetButton();
             switch (v.getId()){
                 case R.id.main_content:
-                    fragmentTransaction.replace(R.id.mian_content_container,fragmentconcent,"f1");
+                    mCurrentFragment = fragmentconcent;
+                    fragmentTransaction.replace(R.id.mian_content_container,mCurrentFragment,"f1");
                     main_content_view.setImageResource(R.drawable.tab_chat_h2x);
                     main_content_text.setTextColor(getResources().getColor(R.color.ssf_main_color));
                     break;
                 case R.id.main_surround:
-                    fragmentTransaction.replace(R.id.mian_content_container,fragmentsurround,"f2");
+                    mCurrentFragment = fragmentsurround;
+                    fragmentTransaction.replace(R.id.mian_content_container,mCurrentFragment,"f2");
                     main_surround_view.setImageResource(R.drawable.tab_contact_h2x);
                     main_surround_text.setTextColor(getResources().getColor(R.color.ssf_main_color));
                     break;
                 case R.id.main_icon:
-                    fragmentTransaction.replace(R.id.mian_content_container,fragmentmain,"f3");
+                    mCurrentFragment = fragmentmain;
+                    fragmentTransaction.replace(R.id.mian_content_container,mCurrentFragment,"f3");
                     main_icon_movie.setImageResource(R.drawable.tab_main_h2x);
                     swvWave.start();
                     swvWave.setVisibility(View.VISIBLE);
                     main_icon_text.setTextColor(getResources().getColor(R.color.ssf_main_color));
                     break;
                 case R.id.main_circle:
-                    fragmentTransaction.replace(R.id.mian_content_container,fragmentcircle,"f4");
+                    mCurrentFragment = fragmentcircle;
+                    fragmentTransaction.replace(R.id.mian_content_container,mCurrentFragment,"f4");
                     main_circle_view.setImageResource(R.drawable.tab_server_h2x);
                     main_circle_text.setTextColor(getResources().getColor(R.color.ssf_main_color));
                     break;
                 case R.id.main_me:
-                    fragmentTransaction.replace(R.id.mian_content_container,fragmentme,"f5");
+                    mCurrentFragment = fragmentme;
+                    fragmentTransaction.replace(R.id.mian_content_container,mCurrentFragment,"f5");
                     main_me_view.setImageResource(R.drawable.tab_me_h2x);
                     main_me_text.setTextColor(getResources().getColor(R.color.ssf_main_color));
                     break;
@@ -192,6 +200,27 @@ public class MainActivity extends AppCompatActivity {
 
         main_me_view.setImageResource(R.drawable.tab_me_n2x);
         main_me_text.setTextColor(getResources().getColor(R.color.fragment_text));
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (keyCode == KeyEvent.KEYCODE_BACK) { //表示按返回键 时的操作
+                // 监听到返回按钮点击事件
+                //后退
+//                if (fragmentManager.getFragments() == fragmentcircle) {
+//                    fragmentcircle.cancleSelect();
+//                    return true;
+//                }
+                if(mCurrentFragment instanceof FragmentCircle){
+                    ((FragmentCircle)mCurrentFragment).cancleSelect();
+                    return true;
+                }
+                //fragmentcircle.cancleSelect();
+                //return true;    //已处理
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 

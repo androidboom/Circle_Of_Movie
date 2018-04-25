@@ -192,7 +192,7 @@ public class FragmentCircle extends Fragment {
             super.handleMessage(msg);
             if(msg.what == 1){
                 positionid = (String)msg.obj;
-                commentLinear.setVisibility(View.VISIBLE);
+//                commentLinear.setVisibility(View.VISIBLE);
                 onFocusChange(true);
                 commentButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -202,7 +202,7 @@ public class FragmentCircle extends Fragment {
                         }else {
                             commentEdittext = commentEdit.getText().toString();
                             requestcomment();
-                            commentLinear.setVisibility(View.GONE);
+//                            commentLinear.setVisibility(View.GONE);
                             onFocusChange(false);
                             request();
                         }
@@ -218,6 +218,15 @@ public class FragmentCircle extends Fragment {
             }
         }
     };
+
+    public void cancleSelect() {
+        //TODO something
+        if (commentLinear.getVisibility() == View.VISIBLE){
+            commentLinear.setVisibility(View.GONE);
+        }else {
+            getActivity().onBackPressed();//销毁自己
+        }
+    }
 
     @Override
     public void onResume() {
@@ -237,9 +246,11 @@ public class FragmentCircle extends Fragment {
                 if(isFocus)  {
                     //显示输入法
                     imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                    commentLinear.setVisibility(View.VISIBLE);
                 }else{
                     //隐藏输入法
                     imm.hideSoftInputFromWindow(commentEdit.getWindowToken(),0);
+                    commentLinear.setVisibility(View.GONE);
                 }
             }
         }, 100);
