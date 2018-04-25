@@ -89,7 +89,7 @@ public class FragmentCircle extends Fragment {
         vHead= View.inflate(getActivity(), R.layout.listview_topstytle, null);
         lv.addHeaderView(vHead);
 //        mainsignup_userid = getArguments().getString("LOGIN");
-        mainsignup_userid = LoginSharedPreferences.getString(getActivity(), "login", "");
+        mainsignup_userid = LoginSharedPreferences.getString(getActivity(), "id", "");
         right_add = (ImageView)view.findViewById(R.id.right_add);
         left_back = (ImageView)view.findViewById(R.id.left_back);
         left_back.setVisibility(View.GONE);

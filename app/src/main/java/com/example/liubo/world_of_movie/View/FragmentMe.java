@@ -104,7 +104,7 @@ public class FragmentMe extends Fragment {
         title.setText("我");
 
 //        mainsignup_userid = getArguments().getString("LOGIN");
-        mainsignup_userid = LoginSharedPreferences.getString(getActivity(), "login", "");
+        mainsignup_userid = LoginSharedPreferences.getString(getActivity(), "id", "");
         signup_userid.setText(mainsignup_userid);
 
         headerView.post(new Runnable() {

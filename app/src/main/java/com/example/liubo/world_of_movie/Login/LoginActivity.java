@@ -121,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                         "response.body() = " + response.body());
                 //signup();
                 LoginSharedPreferences.putString(LoginActivity.this,"login","true");
+                LoginSharedPreferences.putString(LoginActivity.this,"id",signup_userid.getText().toString());
                 Intent intent = new Intent();
                 intent.setClass(LoginActivity.this, MainActivity.class);
 //                Bundle bundle = new Bundle();

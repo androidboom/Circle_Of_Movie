@@ -71,7 +71,6 @@ public class UpadteActivity extends AppCompatActivity {
         newrealname.setText(String.valueOf(bundle.getString("realname")));
         newbirth.setText(String.valueOf(bundle.getString("birth")));
         newsex.setText(String.valueOf(bundle.getString("sex")));
-        signup_userid = bundle.getString("signup_userid");
     }
 
     public void setListener(){
@@ -95,7 +94,7 @@ public class UpadteActivity extends AppCompatActivity {
 
         // 创建Retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://172.16.1.136:8080/springmvc/") // 设置网络请求 Url
+                .baseUrl(MyApplication.VALUE) // 设置网络请求 Url
                 // 增加返回值为String的支持
                 .addConverterFactory(ScalarsConverterFactory.create())
                 // 增加返回值为Gson的支持
