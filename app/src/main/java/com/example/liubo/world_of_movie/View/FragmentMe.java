@@ -154,6 +154,9 @@ public class FragmentMe extends Fragment {
                     Intent intent3 = new Intent();
                     intent3.setClass(getActivity(),LoginActivity.class);
                     startActivity(intent3);
+                    LoginSharedPreferences.putString(getActivity(),"login","false");
+                    LoginSharedPreferences.putString(getActivity(),"id",null);
+                    getActivity().onBackPressed();//销毁自己
                     break;
             }
         }
