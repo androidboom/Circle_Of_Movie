@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         main_icon_movie.setImageResource(R.drawable.tab_main_h2x);
         swvWave.start();
         swvWave.setVisibility(View.VISIBLE);
-        main_icon_text.setTextColor(getResources().getColor(R.color.ssf_main_color));
+        main_icon_text.setTextColor(getResources().getColor(R.color.ssf_fu_color));
         fragmentTransaction.commit();
         setListener();
     }
@@ -138,13 +138,13 @@ public class MainActivity extends AppCompatActivity {
                     mCurrentFragment = fragmentconcent;
                     fragmentTransaction.replace(R.id.mian_content_container,mCurrentFragment,"f1");
                     main_content_view.setImageResource(R.drawable.tab_chat_h2x);
-                    main_content_text.setTextColor(getResources().getColor(R.color.ssf_main_color));
+                    main_content_text.setTextColor(getResources().getColor(R.color.ssf_fu_color));
                     break;
                 case R.id.main_surround:
                     mCurrentFragment = fragmentsurround;
                     fragmentTransaction.replace(R.id.mian_content_container,mCurrentFragment,"f2");
                     main_surround_view.setImageResource(R.drawable.tab_contact_h2x);
-                    main_surround_text.setTextColor(getResources().getColor(R.color.ssf_main_color));
+                    main_surround_text.setTextColor(getResources().getColor(R.color.ssf_fu_color));
                     break;
                 case R.id.main_icon:
                     mCurrentFragment = fragmentmain;
@@ -152,19 +152,19 @@ public class MainActivity extends AppCompatActivity {
                     main_icon_movie.setImageResource(R.drawable.tab_main_h2x);
                     swvWave.start();
                     swvWave.setVisibility(View.VISIBLE);
-                    main_icon_text.setTextColor(getResources().getColor(R.color.ssf_main_color));
+                    main_icon_text.setTextColor(getResources().getColor(R.color.ssf_fu_color));
                     break;
                 case R.id.main_circle:
                     mCurrentFragment = fragmentcircle;
                     fragmentTransaction.replace(R.id.mian_content_container,mCurrentFragment,"f4");
                     main_circle_view.setImageResource(R.drawable.tab_server_h2x);
-                    main_circle_text.setTextColor(getResources().getColor(R.color.ssf_main_color));
+                    main_circle_text.setTextColor(getResources().getColor(R.color.ssf_fu_color));
                     break;
                 case R.id.main_me:
                     mCurrentFragment = fragmentme;
                     fragmentTransaction.replace(R.id.mian_content_container,mCurrentFragment,"f5");
                     main_me_view.setImageResource(R.drawable.tab_me_h2x);
-                    main_me_text.setTextColor(getResources().getColor(R.color.ssf_main_color));
+                    main_me_text.setTextColor(getResources().getColor(R.color.ssf_fu_color));
                     break;
             }
             fragmentTransaction.commit();
