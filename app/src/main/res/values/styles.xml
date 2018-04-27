@@ -37,8 +37,8 @@
     <style name="VideoStyle" parent="android:Theme.Light.NoTitleBar"></style>
 
     <style name="MyEditText" parent="Theme.AppCompat.Light">
-        <item name="colorControlNormal">#000000</item>
-        <item name="colorControlActivated">#000000</item>
+        <item name="colorControlNormal">#FFFFFF</item>
+        <item name="colorControlActivated">#FFFFFF</item>
     </style>
 
 </resources>
