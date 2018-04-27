@@ -218,6 +218,7 @@ public class FragmentCircle extends Fragment {
                 bundle.putString("signup_userid",positionid);
                 intent.putExtras(bundle);
                 intent.setClass(getActivity(), UserInfo.class);
+                startActivity(intent);
             }
         }
     };
