@@ -61,17 +61,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        login = LoginSharedPreferences.getString(this, "login", "");
-        if (!TextUtils.isEmpty(login)){
-            if (!login.equals("true")){
-                finish();
-                startActivity(new Intent(MainActivity.this,LoginActivity.class));
-            }
-        }else {
-            finish();
-            startActivity(new Intent(MainActivity.this,LoginActivity.class));
-        }
-
         initView();
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
