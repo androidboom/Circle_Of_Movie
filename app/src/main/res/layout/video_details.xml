@@ -136,7 +136,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:textSize="25dp"
-                android:text="刘波傻逼"
+                android:text="邢彦纳傻逼"
                 android:id="@+id/video_details_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -161,7 +161,7 @@
             android:layout_marginRight="5dp"
             android:id="@+id/video_details_pro"
             android:textSize="15dp"
-            android:text="刘波杀必死的看法发来电恢复了的撒法拉第是否会来了护理费had数据库房间看电视方便的部分都是发打算发到付回家"
+            android:text="邢彦纳杀必死的看法发来电恢复了的撒法拉第是否会来了护理费had数据库房间看电视方便的部分都是发打算发到付回家"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
