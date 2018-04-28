@@ -45,7 +45,6 @@ public class FragmentMain extends Fragment {
     private VideoInfo videoinfo;
     private List<VideoInfo>  listViews;
     private VideoAdapter madapter;
-    private MyApplication app;
     private Context context;
 
     @Override
@@ -115,15 +114,17 @@ public class FragmentMain extends Fragment {
             // 请求成功时回调
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Gson gson = new Gson();
-                Type type = new TypeToken<List<VideoInfo>>() {}.getType();
-                Object fromjson = gson.fromJson(response.body(),type);
-                listViews = (List<VideoInfo>) fromjson;
-                if (listViews!=null) {
-                    madapter = new VideoAdapter(getActivity(), listViews);
-                    video_list.setAdapter(madapter);
+                if (response != null){
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<VideoInfo>>() {}.getType();
+                    Object fromjson = gson.fromJson(response.body(),type);
+                    listViews = (List<VideoInfo>) fromjson;
+                    if (listViews!=null) {
+                        madapter = new VideoAdapter(getActivity(), listViews);
+                        video_list.setAdapter(madapter);
+                    }
+                    Log.d("xyn", "onResponse: "+listViews);
                 }
-                Log.d("xyn", "onResponse: "+listViews);
             }
             // 请求失败时回调
             @Override
