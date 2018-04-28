@@ -48,7 +48,6 @@ public class FragmentMe extends Fragment {
     private ImageView imgView;
     private View view;
     private MyScrollView scrollview;
-    private MyApplication app;
     private TextView name;
     private TextView note;
     private TextView realname;
@@ -178,7 +177,6 @@ public class FragmentMe extends Fragment {
 
         // 对发送请求进行封装
         Call<String> call = request.getnewinfo(mainsignup_userid);
-        Log.v("123",mainsignup_userid);
 
         // 发送网络请求(异步)
         call.enqueue(new Callback<String>() {
@@ -187,22 +185,24 @@ public class FragmentMe extends Fragment {
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.v("resume", "刷新个人信息成功" + "response.message() = " + response.message() + "\n" +
                         "response.body() = " + response.body());
-                Gson gson = new Gson();
-                Type type = new TypeToken<List<UsersInfo>>() {}.getType();
-                Object fromjson = gson.fromJson(response.body(),type);
-                listViews = (List<UsersInfo>) fromjson;
+                if(response != null){
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<UsersInfo>>() {}.getType();
+                    Object fromjson = gson.fromJson(response.body(),type);
+                    listViews = (List<UsersInfo>) fromjson;
 
-                name.setText(listViews.get(0).getReal_name());
-                note.setText(listViews.get(0).getSignature());
-                realname.setText(listViews.get(0).getUsername());
-                birth.setText(listViews.get(0).getBirthday());
-                sex.setText(listViews.get(0).getSex());
+                    name.setText(listViews.get(0).getReal_name());
+                    note.setText(listViews.get(0).getSignature());
+                    realname.setText(listViews.get(0).getUsername());
+                    birth.setText(listViews.get(0).getBirthday());
+                    sex.setText(listViews.get(0).getSex());
 
-                strname = name.getText().toString();
-                strnote = note.getText().toString();
-                strrealname = realname.getText().toString();
-                strbirth = birth.getText().toString();
-                strsex = sex.getText().toString();
+                    strname = name.getText().toString();
+                    strnote = note.getText().toString();
+                    strrealname = realname.getText().toString();
+                    strbirth = birth.getText().toString();
+                    strsex = sex.getText().toString();
+                }
             }
 
             // 请求失败时回调
