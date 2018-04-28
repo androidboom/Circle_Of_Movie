@@ -38,6 +38,13 @@ import com.example.liubo.world_of_movie.Utils.LoginSharedPreferences;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hyphenate.easeui.EaseConstant;
+import com.scwang.smartrefresh.header.MaterialHeader;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -76,6 +83,7 @@ public class FragmentCircle extends Fragment {
     private View vHead;
     private PopupWindow window;
     private View popupView;
+    private SmartRefreshLayout refreshLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -97,6 +105,28 @@ public class FragmentCircle extends Fragment {
         left_back.setVisibility(View.GONE);
         title = (TextView)view.findViewById(R.id.title);
         title.setText("圈子");
+        refreshLayout = (SmartRefreshLayout)view.findViewById(R.id.refreshLayout);
+
+        //设置 Header 为 Material样式
+        refreshLayout.setRefreshHeader(new MaterialHeader(getActivity()).setShowBezierWave(true));
+        //设置 Footer 为 球脉冲
+        refreshLayout.setRefreshFooter(new BallPulseFooter(getActivity()).setSpinnerStyle(SpinnerStyle.Scale));
+
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                request();
+                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
+
+        refreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                request();
+                refreshlayout.finishLoadmore(2000/*,false*/);//传入false表示加载失败
+            }
+        });
 
         commentLinear = (LinearLayout)view.findViewById(R.id.commentLinear);
         commentEdit = (EditText)view.findViewById(R.id.commentEdit);
