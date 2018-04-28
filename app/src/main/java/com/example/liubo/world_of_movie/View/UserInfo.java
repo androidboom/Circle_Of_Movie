@@ -52,7 +52,6 @@ public class UserInfo extends AppCompatActivity {
     private List<UsersInfo> listViews;
     private String mainsignup_userid;
     private Button chat;
-    private MyApplication app;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -127,17 +126,19 @@ public class UserInfo extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.v("resume", "刷新个人信息成功" + "response.message() = " + response.message() + "\n" +
                         "response.body() = " + response.body());
-                Gson gson = new Gson();
-                Type type = new TypeToken<List<UsersInfo>>() {}.getType();
-                Object fromjson = gson.fromJson(response.body(),type);
-                listViews = (List<UsersInfo>) fromjson;
+                if(response != null){
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<UsersInfo>>() {}.getType();
+                    Object fromjson = gson.fromJson(response.body(),type);
+                    listViews = (List<UsersInfo>) fromjson;
 
-                name.setText(listViews.get(0).getUsername());
-                note.setText(listViews.get(0).getSignature());
-                realname.setText(listViews.get(0).getReal_name());
-                birth.setText(listViews.get(0).getBirthday());
-                sex.setText(listViews.get(0).getSex());
-                signup_userid.setText(listViews.get(0).getUserid());
+                    name.setText(listViews.get(0).getUsername());
+                    note.setText(listViews.get(0).getSignature());
+                    realname.setText(listViews.get(0).getReal_name());
+                    birth.setText(listViews.get(0).getBirthday());
+                    sex.setText(listViews.get(0).getSex());
+                    signup_userid.setText(listViews.get(0).getUserid());
+                }
             }
 
             // 请求失败时回调
