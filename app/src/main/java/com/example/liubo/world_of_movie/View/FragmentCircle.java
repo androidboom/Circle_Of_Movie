@@ -172,12 +172,14 @@ public class FragmentCircle extends Fragment {
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.v("scan", "获取圈子成功" + "response.message() = " + response.message() + "\n" +
                         "response.body() = " + response.body());
-                Gson gson = new Gson();
-                Type type = new TypeToken<List<CircleInfo>>() {}.getType();
-                Object fromjson = gson.fromJson(response.body(),type);
-                listViews = (List<CircleInfo>) fromjson;
-                CircleAdapter circleAdapter = new CircleAdapter(getActivity(),listViews,handler);
-                lv.setAdapter(circleAdapter);
+                if(response != null){
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<CircleInfo>>() {}.getType();
+                    Object fromjson = gson.fromJson(response.body(),type);
+                    listViews = (List<CircleInfo>) fromjson;
+                    CircleAdapter circleAdapter = new CircleAdapter(getActivity(),listViews,handler);
+                    lv.setAdapter(circleAdapter);
+                }
 
             }
 
