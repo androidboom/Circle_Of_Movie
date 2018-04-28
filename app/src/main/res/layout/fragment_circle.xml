@@ -8,11 +8,18 @@
         android:id="@+id/top"
         layout="@layout/topper" />
 
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/refreshLayout"
+        android:layout_below="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlPrimaryColor="@color/ssf_main_color">
+
     <ListView
         android:id="@+id/lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/top"
         android:divider="@android:color/transparent"
         android:dividerHeight="5dp"
         android:listSelector="@android:color/transparent"  >
@@ -54,4 +61,6 @@
             android:background="@color/ssf_main_color"
             android:layout_gravity="center_vertical"/>
     </LinearLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </RelativeLayout>
