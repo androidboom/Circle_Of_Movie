@@ -119,16 +119,21 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.v("login", "影视圈登陆成功" + "response.message() = " + response.message() + "\n" +
                         "response.body() = " + response.body());
-                //signup();
-                LoginSharedPreferences.putString(LoginActivity.this,"login","true");
-                LoginSharedPreferences.putString(LoginActivity.this,"id",signup_userid.getText().toString());
-                Intent intent = new Intent();
-                intent.setClass(LoginActivity.this, MainActivity.class);
+                if(EMClient.getInstance().isLoggedInBefore()){
+                    //enter to main activity directly if you logged in before.
+                    LoginSharedPreferences.putString(LoginActivity.this,"login","true");
+                    LoginSharedPreferences.putString(LoginActivity.this,"id",signup_userid.getText().toString());
+                    Intent intent = new Intent();
+                    intent.setClass(LoginActivity.this, MainActivity.class);
+                    Log.v("kankanxinxi","新登录的IM");
 //                Bundle bundle = new Bundle();
 //                bundle.putString("LOGIN",id);
 //                intent.putExtras(bundle);
-                startActivity(intent);
-                finish();
+                    startActivity(intent);
+                    finish();
+                }else {
+                    signup();
+                }
             }
 
             // 请求失败时回调
@@ -144,12 +149,17 @@ public class LoginActivity extends AppCompatActivity {
                 signup_pw.getText().toString().trim(), new EMCallBack() {
                     @Override
                     public void onSuccess() {
+                        LoginSharedPreferences.putString(LoginActivity.this,"login","true");
+                        LoginSharedPreferences.putString(LoginActivity.this,"id",signup_userid.getText().toString());
                         Intent intent = new Intent();
                         intent.setClass(LoginActivity.this, MainActivity.class);
-                        intent.putExtra("LOGIN",signup_userid.getText().toString());
+//                Bundle bundle = new Bundle();
+//                bundle.putString("LOGIN",id);
+//                intent.putExtras(bundle);
                         startActivity(intent);
                         finish();
                         Log.e("login","IM登陆成功");
+                        Log.v("kankanxinxi","新登录的IM" + signup_userid.getText().toString().trim());
                     }
 
                     @Override
