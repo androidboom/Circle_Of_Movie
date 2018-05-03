@@ -59,6 +59,7 @@ public class UserInfo extends AppCompatActivity {
         setContentView(R.layout.userinfo);
         init();
         request();
+        setListener();
     }
 
     public void init(){
@@ -97,6 +98,7 @@ public class UserInfo extends AppCompatActivity {
                 case R.id.chat:
                     startActivity(new Intent(UserInfo.this, ChatActivity.class).
                             putExtra(EaseConstant.EXTRA_USER_ID,"im" + mainsignup_userid));
+                    Log.v("kankanxinxi","im" + mainsignup_userid);
                     break;
             }
         }

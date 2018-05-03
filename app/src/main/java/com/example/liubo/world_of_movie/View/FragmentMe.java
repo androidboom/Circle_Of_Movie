@@ -25,6 +25,7 @@ import com.example.liubo.world_of_movie.R;
 import com.example.liubo.world_of_movie.Utils.LoginSharedPreferences;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 
 import org.json.JSONArray;
@@ -149,13 +150,32 @@ public class FragmentMe extends Fragment {
                     startActivity(intent);
                     break;
                 case R.id.logout:
-                    //EMClient.getInstance().logout(true);    //同步方法
-                    Intent intent3 = new Intent();
-                    intent3.setClass(getActivity(),LoginActivity.class);
-                    startActivity(intent3);
-                    LoginSharedPreferences.putString(getActivity(),"login","false");
-                    LoginSharedPreferences.putString(getActivity(),"id",null);
-                    getActivity().onBackPressed();//销毁自己
+//                    EMClient.getInstance().logout(true);    //同步方法
+
+                    EMClient.getInstance().logout(false, new EMCallBack() {
+
+                        @Override
+                        public void onSuccess() {
+                            Intent intent3 = new Intent();
+                            intent3.setClass(getActivity(),LoginActivity.class);
+                            startActivity(intent3);
+                            LoginSharedPreferences.putString(getActivity(),"login","false");
+                            LoginSharedPreferences.putString(getActivity(),"id",null);
+                        }
+
+                        @Override
+                        public void onProgress(int progress, String status) {
+
+                        }
+
+                        @Override
+                        public void onError(int code, String error) {
+
+                        }
+                    });
+
+                        getActivity().onBackPressed();//销毁自己
+
                     break;
             }
         }
