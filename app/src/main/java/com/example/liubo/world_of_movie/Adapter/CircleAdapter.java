@@ -138,7 +138,7 @@ public class CircleAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Message message = new Message();
                 message.what = 2;
-                message.obj = getData.get(position).getMoments_id();
+                message.obj = getData.get(position).getMoments_user();
                 handler.sendMessage(message);
             }
         });
@@ -148,7 +148,7 @@ public class CircleAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Message message = new Message();
                 message.what = 2;
-                message.obj = getData.get(position).getMoments_id();
+                message.obj = getData.get(position).getMoments_user();
                 handler.sendMessage(message);
             }
         });
