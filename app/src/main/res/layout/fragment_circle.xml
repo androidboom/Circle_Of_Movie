@@ -25,6 +25,8 @@
         android:listSelector="@android:color/transparent"  >
     </ListView>
 
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,6 +63,4 @@
             android:background="@color/ssf_main_color"
             android:layout_gravity="center_vertical"/>
     </LinearLayout>
-
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </RelativeLayout>
