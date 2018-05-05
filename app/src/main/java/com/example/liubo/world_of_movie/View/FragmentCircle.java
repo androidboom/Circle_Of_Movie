@@ -12,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,22 +20,15 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.liubo.world_of_movie.Adapter.CircleAdapter;
 import com.example.liubo.world_of_movie.Bean.CircleInfo;
-import com.example.liubo.world_of_movie.Bean.UsersInfo;
 import com.example.liubo.world_of_movie.Circle.SubmitCircle;
-import com.example.liubo.world_of_movie.IM.ChatActivity;
-import com.example.liubo.world_of_movie.Login.ForgetPassword;
 import com.example.liubo.world_of_movie.Login.GetRequest_Interface;
-import com.example.liubo.world_of_movie.Login.LoginActivity;
-import com.example.liubo.world_of_movie.Login.Sign;
 import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
 import com.example.liubo.world_of_movie.Utils.LoginSharedPreferences;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.hyphenate.easeui.EaseConstant;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -45,15 +36,8 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 import java.lang.reflect.Type;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -244,7 +228,7 @@ public class FragmentCircle extends Fragment {
                     }
                 });
             }else if(msg.what == 2){
-                positionid = (String)msg.obj;
+                positionid = (String)msg.obj;//其实是用户名
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putString("signup_userid",positionid);
