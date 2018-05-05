@@ -105,31 +105,18 @@ public class CircleAdapter extends BaseAdapter {
         holder.praise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (flag == 0) {
-                    // 第一次单击触发的事件
-                    moments = getData.get(position).getMoments_id();
-                    String s = holder.tv_praise.getText().toString();
-                    int a = Integer.parseInt(s);
-                    int a1 = a + 1;
-                    String s1 = String.valueOf(a1);
-                    holder.tv_praise.setText(s1);
-                    holder.imageView.setBackgroundResource(R.drawable.common_praise3x);
-                    requestpiaise();
-                    flag = 1;
-//                } else {
-//                    // 第二次单击buttont改变触发的事件
-//                    Message message = new Message();
-//                    message.what = 3;
-//                    message.obj = getData.get(position).getMoments_id();
-//                    handler.sendMessage(message);
-//                    String s = holder.tv_praise.getText().toString();
-//                    int a = Integer.parseInt(s);
-//                    int a1 = a - 1;
-//                    String s1 = String.valueOf(a1);
-//                    holder.tv_praise.setText(s1);
-//                    holder.imageView.setBackgroundResource(R.drawable.common_praise3x_nor);
-//                    flag = 0;
-//                }
+               moments = getData.get(position).getMoments_id();
+
+                TextView textView = v.findViewById(R.id.tv_praise);
+                String s = textView.getText().toString();
+                int a = Integer.parseInt(s);
+                int a1 = a + 1;
+                String s1 = String.valueOf(a1);
+                textView.setText(s1);
+
+                v.findViewById(R.id.iv_praise).setBackgroundResource(R.drawable.common_praise3x);
+
+                requestpiaise();
             }
         });
 
