@@ -11,11 +11,80 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    aaptOptions{
+        cruncherEnabled = false
+        useNewCruncher = false
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    sourceSets{
+        main{
+            jniLibs.srcDir 'libs'
+            jni.srcDirs = []
+        }
+    }
+
+    packagingOptions {
+        exclude 'assets/Icon_bus_station.png'
+        exclude 'assets/Icon_end.png'
+        exclude 'assets/Icon_line_node.png'
+        exclude 'assets/Icon_road_nofocus.png'
+        exclude 'assets/Icon_road_yellow_arrow.png'
+        exclude 'assets/icon_scale.9.png'
+        exclude 'assets/Icon_start.png'
+        exclude 'assets/Icon_subway_station.png'
+        exclude 'assets/Icon_walk_route.png'
+        exclude 'assets/lineDashTexture.png'
+        exclude 'assets/logo_l.png'
+        exclude 'assets/logo_h.png'
+        exclude 'assets/main_bottombtn_down.9.png'
+        exclude 'assets/main_bottombtn_up.9.png'
+        exclude 'assets/main_icon_zoomin.png'
+        exclude 'assets/main_icon_zoomin_dis.png'
+        exclude 'assets/main_icon_zoomout.png'
+        exclude 'assets/main_icon_zoomout_dis.png'
+        exclude 'assets/main_topbtn_down.9.png'
+        exclude 'assets/main_topbtn_up.9.png'
+        exclude 'assets/SDK_Default_Icon_Car.png'
+        exclude 'assets/SDK_Default_Icon_End.png'
+        exclude 'assets/SDK_Default_Icon_Passenger.png'
+        exclude 'assets/SDK_Default_Icon_Start.png'
+        exclude 'assets/SDK_Default_Route_Texture_Bule_Arrow.png'
+        exclude 'assets/SDK_Default_Traffic_Texture_Congestion.png'
+        exclude 'assets/SDK_Default_Traffic_Texture_SevereCongestion.png'
+        exclude 'assets/SDK_Default_Traffic_Texture_Slow.png'
+        exclude 'assets/SDK_Default_Traffic_Texture_Smooth.png'
+        exclude 'assets/wear_zoom_in.png'
+        exclude 'assets/wear_zoom_in_pressed.png'
+        exclude 'assets/wear_zoom_out_pressed.png'
+        exclude 'assets/wear_zoon_out.png'
+        exclude 'assets/Icon_mark6.png'
+        exclude 'assets/Icon_mark1.png'
+        exclude 'assets/Icon_mark2.png'
+        exclude 'assets/Icon_mark3.png'
+        exclude 'assets/Icon_mark4.png'
+        exclude 'assets/Icon_mark5.png'
+        exclude 'assets/Icon_mark6.png'
+        exclude 'assets/Icon_mark7.png'
+        exclude 'assets/Icon_mark9.png'
+        exclude 'assets/Icon_mark8.png'
+        exclude 'assets/Icon_mark10.png'
+        exclude 'assets/cfg/a/CustomIndex'
+        exclude 'assets/cfg/a/DVDirectory.cfg'
+        exclude 'assets/cfg/a/DVHotcity.cfg'
+        exclude 'assets/cfg/a/DVHotMap.cfg'
+        exclude 'assets/cfg/a/DVSDirectory.cfg'
+        exclude 'assets/cfg/a/DVStreet.cfg'
+        exclude 'assets/cfg/a/DVVersion.cfg'
+        exclude 'assets/cfg/a/street.sty'
+        exclude 'assets/cfg/idrres/baseindoormap.sty'
+        exclude 'assets/cfg/idrres/DVIndoor.cfg'
+        exclude 'assets/cfg/ResPackIndoorMap.sdkrs'
+        // ... and any other excludes go here
     }
 }
 
@@ -29,12 +98,13 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-scalars:2.2.0'
     compile 'com.squareup.okhttp3:okhttp:3.1.2'
     // Okhttp库
+    compile files('libs/BaiduLBS_Android.jar')
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.android.support:appcompat-v7:27.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    implementation project(':easeui')
-
+    compile project(':easeui')
+    compile 'cn.jzvd:jiaozivideoplayer:6.0.0'
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4'
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4'//没有使用特殊Header，可以不加这行
 }

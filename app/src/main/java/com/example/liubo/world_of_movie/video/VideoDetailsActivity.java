@@ -5,20 +5,20 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
-
 import com.example.liubo.world_of_movie.R;
 import com.example.liubo.world_of_movie.Utils.CommonTools;
 import com.example.liubo.world_of_movie.Utils.DisplayUtil;
-
 import java.util.List;
+import cn.jzvd.JZVideoPlayerStandard;
 
 
-public class VideoDetailsActivity extends Activity {
+public class VideoDetailsActivity extends AppCompatActivity{
 
     private List<VideoInfo> audioInfo;
     private String urlPath;
@@ -26,6 +26,7 @@ public class VideoDetailsActivity extends Activity {
     private TextView video_details_pro;
     private TextView video_details_d;
     private int position;
+    private JZVideoPlayerStandard jzVideoPlayerStandard;
 
 
     @Override
@@ -41,20 +42,24 @@ public class VideoDetailsActivity extends Activity {
         video_details_pro.setText(audioInfo.get(position).getContent());
         video_details_title.setText(audioInfo.get(position).getName());
 
-        initView();
-        loadData();
+        jzVideoPlayerStandard = (JZVideoPlayerStandard) findViewById(R.id.jc_player);
+        jzVideoPlayerStandard.setUp(audioInfo.get(position).getMovie_url()
+                , JZVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, audioInfo.get(position).getName());
+
+        /*initView();
+        loadData();*/
     }
-    private void initView(){
+   /* private void initView(){
         // ButterKnife.bind(this);
         initFakeStatusBarHeight(true);
     }
 
-    /*private void initWidget(){
+    *//*private void initWidget(){
         initWebViewSetting(mWebView);
-    }*/
-    /*private void setupListener(){
+    }*//*
+    *//*private void setupListener(){
         setupWebViewListener();
-    }*/
+    }*//*
 
     private void loadData(){
         View view = findViewById(R.id.activity_video_rl);
@@ -62,12 +67,12 @@ public class VideoDetailsActivity extends Activity {
         // String url = "http://www.wezeit.com/wap/297121.html";
         // loadWebviewUrl(url);
     }
-   /* protected void loadWebviewUrl(String url){
+   *//* protected void loadWebviewUrl(String url){
         DebugTools.d("js2 discovery2 jump3 vote2 news2 current url: " + url);
         if(!TextUtils.isEmpty(url)){
             mWebView.loadUrl(url);
         }
-    }*/
+    }*//*
 
     protected int mPixelInsetTop;
     protected void initFakeStatusBarHeight(boolean isNewsPage){
@@ -211,11 +216,11 @@ public class VideoDetailsActivity extends Activity {
         mVideoHolder.videoRl.setLayoutParams(params);
         mVideoHolder.mediaControl.setLayoutParams(controlParams);
         mVideoHolder.imgIv.setLayoutParams(indexImageParams);
-    }
+    }*/
 
 
     private void init(){
-       // mVideoView =findViewById(R.id.videoview);
+        // mVideoView =findViewById(R.id.videoview);
         video_details_d = findViewById(R.id.video_details_d);
         video_details_pro = findViewById(R.id.video_details_pro);
         video_details_title = findViewById(R.id.video_details_title);
@@ -227,60 +232,3 @@ public class VideoDetailsActivity extends Activity {
     }
 
 }
-
-/*
-public class VideoDetailsActivity extends Activity{
-
-    private List<VideoInfo> audioInfo;
-    private VideoView videoView;
-    private String urlPath;
-    private  int position;
-    private TextView video_details_title;
-    private TextView video_details_pro;
-    private TextView video_details_d;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
-        setContentView(R.layout.video_details);
-
-        init();
-         audioInfo = (List<VideoInfo>) getIntent().getSerializableExtra("videoinfo");
-        position = (int) getIntent().getSerializableExtra("position");
-        Log.d("xyn", "onCreate: "+audioInfo.get(position).getMovie_url());
-
-        video_details_d.setText(audioInfo.get(position).getPerformer());
-        video_details_pro.setText(audioInfo.get(position).getContent());
-        video_details_title.setText(audioInfo.get(position).getName());
-
-
-        urlPath = audioInfo.get(position).getMovie_url();
-        final Uri uri = Uri.parse( urlPath );
-        //设置视频路径
-        videoView.setVideoURI(uri);
-        //开始播放视频
-        videoView.start();
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.start();
-            }
-        });
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                videoView.setVideoURI(uri);
-                videoView.start();
-            }
-        });
-    }
-
-    private void init(){
-        video_details_d = findViewById(R.id.video_details_d);
-        videoView = findViewById(R.id.videoview);
-        video_details_pro = findViewById(R.id.video_details_pro);
-        video_details_title = findViewById(R.id.video_details_title);
-    }
-}
-*/
