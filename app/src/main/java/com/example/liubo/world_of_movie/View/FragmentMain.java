@@ -12,7 +12,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.liubo.world_of_movie.Login.GetRequest_Interface;
 import com.example.liubo.world_of_movie.Me.UpadteActivity;
@@ -25,6 +27,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.Serializable;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,58 +42,72 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class FragmentMain extends Fragment {
     private EditText editText;
-    private ImageButton search_btn;
+    private Button search_btn;
     private ListView video_list;
     private View view;
     private VideoInfo videoinfo;
     private List<VideoInfo>  listViews;
+    private List<VideoInfo>  listViewsnew =new ArrayList<VideoInfo>();
     private VideoAdapter madapter;
     private Context context;
+    private ImageView right_add;
+    private ImageView left_back;
+    private TextView title;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main,null);
         request();
         init();
-        setListener();
+        video_list.setFocusable(true);
         video_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("xyn", "onItemClick: ");
                 Intent intent = new Intent(getActivity(), VideoDetailsActivity.class);
-                intent.putExtra("videoinfo", (Serializable) listViews);
+                if (listViewsnew!=null) {
+                    intent.putExtra("videoinfo", (Serializable) listViews);
+                }else {
+                    intent.putExtra("videoinfo", (Serializable) listViewsnew);
+                    listViewsnew = null;
+                }
                 intent.putExtra("position",position);
                 startActivity(intent);
+            }
+        });
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i=0;i<listViews.size();i++) {
+                    if (listViews.get(i).getName().contains(editText.getText())){
+                        Log.d("xingyanna", "onClick: "+listViews.get(i));
+                        listViewsnew.add(listViews.get(i));
+                    }
+                }
+                if (listViewsnew!=null) {
+                    madapter = new VideoAdapter(getActivity(), listViewsnew);
+                    video_list.setAdapter(madapter);
+                }else {
+                    Toast.makeText(context, "请输入正确的视频名字", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return view;
     }
 
     private void init(){
-        editText =view.findViewById(R.id.query);
-        search_btn=view.findViewById(R.id.search_clear);
+        search_btn = view.findViewById(R.id.search_btn);
+        editText =view.findViewById(R.id.edit_text);
         video_list = view.findViewById(R.id.video_list);
+        right_add = (ImageView)view.findViewById(R.id.right_add);
+        right_add.setVisibility(View.GONE);
+        left_back = (ImageView)view.findViewById(R.id.left_back);
+        left_back.setVisibility(View.GONE);
+        title = (TextView)view.findViewById(R.id.title);
+        title.setText("首页");
     }
 
-    public void setListener(){
-        search_btn.setOnClickListener(MyListener);
-    }
 
-    View.OnClickListener MyListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.search_clear:
-                    search_btn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                        }
-                    });
-                    break;
-            }
-        }
-    };
 
     public void request() {
         // 创建Retrofit对象

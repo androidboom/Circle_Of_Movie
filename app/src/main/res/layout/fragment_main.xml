@@ -2,7 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/ease_search_bar" />
+    <include layout="@layout/topper" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="#e1e1e2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:gravity="center"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:hint="请输入视频名字"
+            android:id="@+id/edit_text"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/corners_bg"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp" />
+        <Button
+            android:id="@+id/search_btn"
+            android:textSize="18dp"
+            android:textColor="#fff"
+            android:background="#e1e1e2"
+            android:text="搜索"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
     <ListView
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
