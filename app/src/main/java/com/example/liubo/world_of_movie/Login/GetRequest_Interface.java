@@ -35,7 +35,7 @@ public interface GetRequest_Interface {
 
     @POST("alterPSW")
     @FormUrlEncoded
-    Call<String> get(@Field("userid") String userid, @Field("password") String password, @Field("username") String username);
+    Call<String> get(@Field("userid") String userid, @Field("password") String password, @Field("username") String username,@Field("psw_answer") String psw_answer);
 
     @POST("updateInformation")
     @FormUrlEncoded
@@ -63,4 +63,12 @@ public interface GetRequest_Interface {
 
     @GET("browseMovie")
     Call<String> getVideoInfo();
+
+    @POST("addMovieDiscuss")
+    @FormUrlEncoded
+    Call<String> addmovie(@Field("userid") String userid,@Field("movie_id") String movie_id,@Field("content") String content);
+
+    @POST("addMoviePraise")
+    @FormUrlEncoded
+    Call<String> praisemovie(@Field("movie_id") String movie_id);
 }

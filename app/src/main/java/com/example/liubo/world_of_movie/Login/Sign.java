@@ -127,7 +127,7 @@ public class Sign extends AppCompatActivity {
             public void run() {
                 try {
                     EMClient.getInstance().createAccount(IM_userid.trim(),
-                            signup_pw.getText().toString().trim());
+                            IM_userid.trim());
                     Log.e("sign","IM注册成功");
                     requestIM();
                 } catch (HyphenateException e) {

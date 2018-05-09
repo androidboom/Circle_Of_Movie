@@ -1,11 +1,12 @@
-package com.example.liubo.world_of_movie.video;
+package com.example.liubo.world_of_movie.Bean;
 
-import java.io.Serializable;
+import java.util.List;
 
 /**
- * Created by xingyanna on 2018/3/12.
+ * Created by Liubo on 2018/3/14.
  */
-public class VideoInfo  implements Serializable{
+
+public class MovieInfo {
     private String id;
     private String name;
     private String content;
@@ -14,22 +15,7 @@ public class VideoInfo  implements Serializable{
     private String movie_url;
     private String director;
     private String performer;
-
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
-    }
-
-    public String getPerformer() {
-        return performer;
-    }
-
-    public void setPerformer(String performer) {
-        this.performer = performer;
-    }
+    private List<MovieDiscussInfo> listDiscuss;
 
     public String getId() {
         return id;
@@ -77,5 +63,29 @@ public class VideoInfo  implements Serializable{
 
     public void setMovie_url(String movie_url) {
         this.movie_url = movie_url;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getPerformer() {
+        return performer;
+    }
+
+    public void setPerformer(String performer) {
+        this.performer = performer;
+    }
+
+    public List<MovieDiscussInfo> getListDiscuss() {
+        return listDiscuss;
+    }
+
+    public void setListDiscuss(List<MovieDiscussInfo> listDiscuss) {
+        this.listDiscuss = listDiscuss;
     }
 }

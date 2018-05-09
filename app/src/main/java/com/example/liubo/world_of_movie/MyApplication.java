@@ -15,7 +15,8 @@ public class MyApplication extends Application {
 //    private static final String VALUE = "http://10.7.82.115:8080/springmvc/";
 //    public static final String VALUE = "http://192.168.31.215:8080/springmvc/";
 //    public static final String VALUE = "http://172.16.1.171:8080/springmvc/";
-    public static final String VALUE = "http://118.89.240.98:8080/springmvc/";
+//    public static final String VALUE = "http://118.89.240.98:8080/springmvc/";
+      public static final String VALUE = "http://192.168.253.11:8080/springmvc/";
     public String value;
 
     @Override

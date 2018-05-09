@@ -1,18 +1,15 @@
-package com.example.liubo.world_of_movie.Login;
+package com.example.liubo.world_of_movie.Circle;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.liubo.world_of_movie.Bean.AlterPSW;
+import com.example.liubo.world_of_movie.Login.GetRequest_Interface;
 import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
 
@@ -24,54 +21,57 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
- * Created by Liubo on 2018/3/6.
+ * Created by Liubo on 2018/3/13.
  */
 
-public class ForgetPassword extends AppCompatActivity {
-    private TextView title;
-    private ImageView left_back;
+public class SubmitMovie extends AppCompatActivity {
     private ImageView right_add;
-    private Button alterpasswordbtn;
-    private EditText alter_name;
-    private EditText alter_userid;
-    private EditText alter_pw;
+    private ImageView left_back;
+    private TextView title;
+    private EditText content;
     private MyApplication app;
-    private EditText alter_idcard;
+    private String signup_userid;
+    private String movieid;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.forgetpassword_layout);
+        setContentView(R.layout.submitcircle_layout);
         init();
         setListener();
     }
 
     public void init(){
-        app = (MyApplication) getApplication(); // 获得CustomApplication对象
-        alterpasswordbtn = (Button) findViewById(R.id.alterpasswordbtn);
-        alter_userid = (EditText) findViewById(R.id.alter_userid);
-        alter_pw = (EditText) findViewById(R.id.alter_pw);
-        alter_name = (EditText) findViewById(R.id.alter_name);
-        alter_idcard = (EditText)findViewById(R.id.alter_idcard);
         right_add = (ImageView)findViewById(R.id.right_add);
-        right_add.setVisibility(View.GONE);
+        right_add.setBackgroundResource(R.drawable.submit);
         left_back = (ImageView)findViewById(R.id.left_back);
-        left_back.setVisibility(View.GONE);
         title = (TextView)findViewById(R.id.title);
-        title.setText("找回密码");
+        title.setText("");
+        content = (EditText)findViewById(R.id.content);
+
+        Bundle bundle = this.getIntent().getExtras();
+        signup_userid = bundle.getString("signup_userid");
+        movieid = bundle.getString("movie");
+
+        Log.v("submituserid",signup_userid);
+
     }
 
     public void setListener(){
-        alterpasswordbtn.setOnClickListener(MyListener);
+        left_back.setOnClickListener(MyListener);
+        right_add.setOnClickListener(MyListener);
     }
 
     View.OnClickListener MyListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.alterpasswordbtn:
-                    request();
+                case R.id.left_back:
+                    finish();
                     break;
+                case R.id.right_add:
+                    request();
+                break;
             }
         }
     };
@@ -91,27 +91,23 @@ public class ForgetPassword extends AppCompatActivity {
         GetRequest_Interface request = retrofit.create(GetRequest_Interface.class);
 
         // 对发送请求进行封装
-        Call<String> call = request.get(alter_userid.getText().toString(), alter_pw.getText().toString(),
-                alter_name.getText().toString(),alter_idcard.getText().toString());
+        Call<String> call = request.addmovie(signup_userid,movieid,content.getText().toString());
 
         // 发送网络请求(异步)
         call.enqueue(new Callback<String>() {
             // 请求成功时回调
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Log.v("login", "修改密码" + "response.message() = " + response.message() + "\n" +
+                Log.v("submitcircle", "圈子发表成功" + "response.message() = " + response.message() + "\n" +
                         "response.body() = " + response.body());
-                Toast.makeText(ForgetPassword.this, "修改密码成功", Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             // 请求失败时回调
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Log.v("login", "修改密码" + "onFailure = \n" + t.toString());
+                Log.v("submitcircle", "圈子发表失败" + "onFailure = \n" + t.toString());
             }
         });
     }
-
-
 }
