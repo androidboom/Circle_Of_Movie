@@ -27,115 +27,7 @@
     </LinearLayout>
 
 
-    <!--<RelativeLayout
-        android:id="@+id/video_rl"
-        android:layout_width="match_parent"
-        android:layout_height="202dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/library_video_video_margin_top"
-        android:background="@android:color/black" >-->
 
-    <!-- <com.example.liubo.world_of_movie.video.WylVideoView
-         android:id="@+id/videoview"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:layout_centerInParent="true" />
-
-     <ProgressBar
-         android:id="@+id/loading_pb"
-         android:layout_width="30dp"
-         android:layout_height="30dp"
-         android:layout_centerInParent="true"
-         android:visibility="gone" />
- </RelativeLayout>
-
- <ImageView
-     android:id="@+id/video_image_iv"
-     android:layout_width="match_parent"
-     android:layout_height="202dp"
-     android:layout_alignTop="@id/video_rl"
-     android:scaleType="centerCrop" />
-
- &lt;!&ndash;<com.example.liubo.world_of_movie.video.WylMediaControl
-     android:id="@+id/media_control"
-     android:layout_width="match_parent"
-     android:layout_height="@dimen/library_video_controlbar_height"
-     android:layout_alignBottom="@id/video_rl" >&ndash;&gt;
-
-     <RelativeLayout
-         android:id="@+id/video_control_ll"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:background="@drawable/shape_video_play_shadow" >
-
-         <ImageButton
-             android:id="@+id/mediacontroller_play_pause"
-             android:layout_width="@dimen/library_video_controlbar_height"
-             android:layout_height="@dimen/library_video_controlbar_height"
-             android:layout_alignParentLeft="true"
-             android:layout_centerVertical="true"
-             android:background="@android:color/transparent"
-             android:src="@mipmap/library_video_mediacontroller_play" />
-
-         <SeekBar
-             android:id="@+id/mediacontroller_seekbar"
-             style="@style/LibraryVideoMediaControllerSeekBar"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_alignParentBottom="true"
-             android:layout_centerVertical="true"
-             android:layout_marginRight="10dp"
-             android:layout_toLeftOf="@+id/mediacontroller_time_total"
-             android:layout_toRightOf="@id/mediacontroller_play_pause"
-             android:focusable="true"
-             android:max="1000"
-             android:thumbOffset="0dp" />
-
-         <TextView
-             android:id="@+id/mediacontroller_time_current"
-             style="@style/MediaController_Text"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_centerVertical="true"
-             android:layout_marginLeft="5dp"
-             android:layout_toRightOf="@id/mediacontroller_play_pause"
-             android:visibility="gone" />
-
-         <ImageButton
-             android:id="@+id/mediacontroller_half_full_ib"
-             android:layout_width="@dimen/library_video_controlbar_height"
-             android:layout_height="@dimen/library_video_controlbar_height"
-             android:layout_alignParentRight="true"
-             android:layout_centerVertical="true"
-             android:background="@android:color/transparent"
-             android:src="@mipmap/library_video_mediacontroller_to_full" />
-
-         <TextView
-             android:id="@+id/mediacontroller_time_total"
-             style="@style/MediaController_Text"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_centerVertical="true"
-             android:layout_toLeftOf="@id/mediacontroller_half_full_ib" />
-     </RelativeLayout>
- </com.example.liubo.world_of_movie.video.WylMediaControl>
--->
-    <!--<ImageView
-        android:id="@+id/play_symbol_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/video_rl"
-        android:layout_alignTop="@id/video_rl"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="30dp"
-        android:src="@mipmap/library_video_play_symbol" />
-
-    <TextView
-        android:id="@+id/divider_tv"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_below="@id/video_rl"
-        android:background="@color/theme_bg_color" />-->
 
     <LinearLayout
         android:layout_below="@id/video_layout"
@@ -146,7 +38,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
@@ -154,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     android:text="邢彦纳傻逼"
                     android:id="@+id/video_details_title"
                     android:layout_width="wrap_content"
@@ -165,22 +57,23 @@
                     android:textSize="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
             </LinearLayout>
-
+       <LinearLayout
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+          android:layout_height="wrap_content">
             <TextView
+                android:textSize="15dp"
                 android:id="@+id/share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="230dp"
                 android:text="分享"/>
 
             <LinearLayout
                 android:id="@+id/layout_praise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
                 android:layout_marginLeft="10dp"
                 android:gravity="center">
                 <ImageView
@@ -190,6 +83,7 @@
                     android:layout_marginRight="5dp"
                     android:background="@drawable/common_praise3x_nor"/>
                 <TextView
+                    android:textSize="15dp"
                     android:id="@+id/tv_praise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -197,7 +91,7 @@
             </LinearLayout>
         </LinearLayout>
 
-
+        </LinearLayout>
 
         <TextView
             android:layout_margin="10dp"

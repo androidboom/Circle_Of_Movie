@@ -59,7 +59,6 @@ public class FragmentMain extends Fragment {
         view = inflater.inflate(R.layout.fragment_main,null);
         request();
         init();
-        video_list.setFocusable(true);
         video_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

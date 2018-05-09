@@ -18,9 +18,21 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.VideoView;
+import com.example.liubo.world_of_movie.Adapter.MovieAdapter;
+import com.example.liubo.world_of_movie.Bean.MovieDiscussInfo;
+import com.example.liubo.world_of_movie.Bean.MovieInfo;
+import com.example.liubo.world_of_movie.Circle.SubmitCircle;
+import com.example.liubo.world_of_movie.Circle.SubmitMovie;
+import com.example.liubo.world_of_movie.Login.GetRequest_Interface;
+import com.example.liubo.world_of_movie.MyApplication;
 import com.example.liubo.world_of_movie.R;
 import com.example.liubo.world_of_movie.Utils.CommonTools;
 import com.example.liubo.world_of_movie.Utils.DisplayUtil;
+import com.example.liubo.world_of_movie.Utils.LoginSharedPreferences;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.logging.SocketHandler;
 
