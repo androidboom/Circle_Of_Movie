@@ -56,10 +56,13 @@ public class FragmentMain extends Fragment {
         video_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                listViews.get(position).getId();
+//                Log.v("liuboyy",listViews.get(position).getId());
                 Log.d("xyn", "onItemClick: ");
                 Intent intent = new Intent(getActivity(), VideoDetailsActivity.class);
                 intent.putExtra("videoinfo", (Serializable) listViews);
                 intent.putExtra("position",position);
+                intent.putExtra("movieid",listViews.get(position).getId());
                 startActivity(intent);
             }
         });

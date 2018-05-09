@@ -146,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void signup(){
         EMClient.getInstance().login("im" + signup_userid.getText().toString().trim(),
-                signup_pw.getText().toString().trim(), new EMCallBack() {
+                "im" + signup_userid.getText().toString().trim(), new EMCallBack() {
                     @Override
                     public void onSuccess() {
                         LoginSharedPreferences.putString(LoginActivity.this,"login","true");
